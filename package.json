@@ -1,0 +1,42 @@
+{
+  "name": "fastwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "migrate": "node ./lib/scripts/Migrate.js",
+    "storage:link": "node ./lib/scripts/Storage_Link.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cookie": "^9.1.0",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/mongodb": "^8.0.0",
+    "@fastify/multipart": "^8.0.0",
+    "@fastify/mysql": "^4.1.0",
+    "@fastify/session": "^10.5.0",
+    "@fastify/static": "^6.12.0",
+    "@fastify/view": "^8.2.0",
+    "art-template": "^4.13.2",
+    "bcrypt": "^5.1.1",
+    "connect-redis": "^7.1.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.0",
+    "ioredis": "^5.3.2",
+    "nodemailer": "^6.9.7",
+    "qrcode": "^1.5.3",
+    "qs": "^6.11.2",
+    "session-file-store": "^1.5.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
