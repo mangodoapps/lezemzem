@@ -1,0 +1,61 @@
+{{ extend "./theme.art" }}
+
+
+{{ block "content" }}
+
+<section class="page-header about-bg">
+    <div class="page-header__bg about-overlay"></div>
+    <div class="page-header__box container">
+        <h1>Hakkımızda</h1>
+        <p>Description</p>
+    </div>
+</section>
+<section class="about flex column">
+    <div class="container">
+        <div class="card flex">
+            <div class="card__img">
+                <img class="slider-bg" src="/static/storage/img/about-bg.png">
+            </div>
+            <div class="card__text flex column">
+                <h1>Our mission</h1>
+                <p>Message</p>
+            </div>
+        </div>
+    </div>
+    <div class="about__button flex">
+        <a href="/solutions" class="btn filled-white-btn">Our Solutions</a>
+    </div>
+</section>
+<section class="numbers flex">
+    <div class="numbers__box flex column">
+        <h1>15+</h1>
+        <h2>PROJECTS</h2>
+    </div>
+    <div class="numbers__box flex column">
+        <h1>100+</h1>
+        <h2>CUSTOMERS</h2>
+    </div>
+    <div class="numbers__box flex column">
+        <h1>250</h1>
+        <h2>AREAS</h2>
+    </div>
+    <div class="numbers__box flex column">
+        <h1>15+</h1>
+        <h2>COUNTRIES</h2>
+    </div>
+    <div class="numbers__box flex column">
+        <h1>80+</h1>
+        <h2>SERVICES</h2>
+    </div>
+</section>
+<section class="details">
+    <div class="container flex column">
+        <div class="page-subheader flex column">
+            <h1>Missions Header</h1>
+            <div class="line"></div>
+            <p>Missions Header Content</p>
+        </div>
+    </div>
+</section>
+
+{{ /block }}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Zemzem</title>
+    <link rel="stylesheet" href="/static/storage/css/site_style.css?v=1"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/storage/js/site/main.js"></script>
+    <script src="/static/storage/js/site/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<body>
+    
+    <header class="header flex">
+        <div class="header__logo">
+            <a href="/"><img src="/static/storage/img/logo.png" alt="Logo"></a>
+        </div>
+        <div class="header__menu flex">
+            <div class="header__pages">
+                <ul class="navigation flex">
+                    <li><a href="/about">Hakkımızda</a></li>
+                    <li><a href="/solutions">Projeler</a></li>
+                    <li><a href="/news">Haberler</a></li>
+                    <li><a href="/">Etkinlikler</a></li>
+                </ul>
+            </div>
+            <div class="header__buttons flex">
+                <a  href="/contact" class="btn filled-btn">İletişime Geçin</a>
+                <!--<div class="language-dropdown">
+                    <a class="btn language-btn flex">
+                        <span class="flag-circle">
+                            <img src="/static/storage/img/langs" alt="TR">
+                        </span>
+                    </a>
+                    <div class="language-options">
+                        <a href="#" class="language-option flex">
+                            <span class="flag-circle">
+                                <img src="/static/storage/img/langs/" alt="EN">
+                            </span>
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{ block "content" }}{{ /block }}
+    </main>
+
+    <footer class="footer flex">
+        <div class="footer__left flex column">
+            <div class="footer__logo">
+                <a href="/"><img src="/static/storage/img/logo-black.png" alt="Logo"></a>
+            </div>
+            <a href="/contact" class="btn white-btn">İLETİŞİME GEÇİN<i class="fa-solid fa-location-arrow"></i></a>
+        </div>
+        <div class="footer__right flex">
+            <div class="footer__menu">
+                <ul class="navigation flex column">
+                    <div class="line"></div>
+                    <li><a href="/about">Hakkımızda</a></li>
+                    <li><a href="/solutions">Projeler</a></li>
+                    <li><a href="/news">Haberler</a></li>
+                    <li><a href="/">Etkinlikler</a></li>
+                </ul>
+            </div>
+            <div class="footer__policies flex column">
+                <div class="line"></div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+                <span>© 2025 Le Zemzem</span>
+            </div>
+            <div class="footer__info flex column">
+                <a href="tel:{{settings?.phone}}"><i class="fa-solid fa-phone"></i>00000000000</a>
+                <a href="{{settings?.email}}"><i class="fa-solid fa-envelope"></i>ornek@mail.com</a>
+            </div>
+            <div class="social flex column">
+                <span>Follow us:</span>
+                <div class="social__links flex">
+                    <a href="{{ settings?.social_media?.facebook }}" target="_blank" class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="{{ settings?.social_media?.twitter }}" target="_blank" class="social-icon x-twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="{{ settings?.social_media?.linkedin }}" target="_blank" class="social-icon linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="{{ settings?.social_media?.youtube }}" target="_blank" class="social-icon youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="{{ settings?.social_media?.instagram }}" target="_blank" class="social-icon instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
