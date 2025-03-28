@@ -1,0 +1,122 @@
+{{ extend "./theme.art" }}
+
+
+{{ block "content" }}
+<section class="slider">
+    <ul class="items">
+        <li class="item current">
+            <img class="slider-bg" src="/static/storage/img/slider.png">
+            <div class="slider-content flex column">
+                <h1>Le Zemzem</h1>
+                <h2>Content</h2>
+                <p>ŞanlıUrfa’nın Kültürel Mirasından Beslenen Sosyal Kalkınmasına Katkı Sağlamak Amacıyla Yola Çıkan Bir Sosyal Girişimdir</p>
+            </div>
+        </li>
+        <div class="dots">
+            <button type="button" class="dot"></button>
+        </div>
+    </ul>
+    <div class="slider-buttons">
+        <button type="button" id="prev" class="prev-btn"></button>
+        <button type="button" id="next" class="next-btn"></button>
+    </div>
+</section>
+
+<section class="overview">
+    <div class="overview__boxes flex container">
+        <div class="overview__box">
+            <img src="/static/storage/img/vision.png">
+            <h1>Vizyon</h1>
+            <div class="line"></div>
+            <p>Şanlıurfa’nın kültürel mirasını koruyarak ve geliştirerek, ekonomik ve sosyal kalkınmasına katkı sağlayan, ulusal ve küresel alanda öncü, yaratıcı ve sürdürülebilir çalışmalara imza atan örnek bir sosyal girişim olmak.</p>
+        </div>
+
+        <div class="overview__box">
+            <img src="/static/storage/img/mission.png">
+            <h1>Misyon</h1>
+            <div class="line"></div>
+            <p>Şanlıurfa’nın sosyal ve kültürel gelişimine değer katan projeler ve programlar geliştirir, uygular ve destekler. Yerel halkın farkındalığını artırarak, kültürel mirası canlandırmayı ve ekonomik kalkınmayı sağlamayı amaçlar.</p>
+        </div>
+
+        <div class="overview__box">
+            <img src="/static/storage/img/goal.png">
+            <h1>Hedef</h1>
+            <div class="line"></div>
+            <p>Şanlıurfa’nın turizm potansiyelini ve kültürel zenginliğini ön plana çıkararak, 5 milyon ziyaretçi ve 1 milyon konaklamaya ulaşmak. Kültür ekonomisini geliştirerek istihdama ve bölgesel kalkınmaya katkı sağlamak.</p>
+        </div>
+    </div>
+</section>
+
+<section class="features flex">
+    <div class="boxes-container flex column container">
+        <div class="page-subheader flex column">
+            <h1>Title here</h1>
+            <div class="line"></div>
+            <p>content here</p>
+        </div>
+        <div class="boxes flex">
+            <div class="box">
+                <div class="box__img">
+                    <img class="slider-bg" src="/static/storage/">
+                </div>
+                <div class="box__text">
+                    <h1>box title</h1>
+                    <p>content here</p>
+                    <a href="#">Learn More<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="boxes-button">
+            <a class="btn filled-btn" href="#">Our Projects</a>
+        </div>
+    </div>
+</section>
+
+<section class="donation">
+    <div class="donation__content flex container">
+        <div class="donation__img">
+            <img class="slider-bg" src="/static/storage/upload_files">
+        </div>
+        <div class="donation__info flex column">
+            <div class="donation__text flex column">
+                <h1>header</h1>
+                <h2>subheader</h2>
+                <p>content</p>
+            </div>
+            <a href="/" class="btn filled-white-btn">İletişime Geçin</a>
+        </div>
+    </div>
+</section>
+
+<section class="partners">
+    <div class="">
+
+        
+    </div>
+</section>
+
+<section class="latest-news">
+    <div class="boxes-container flex column container">
+        <div class="page-subheader flex column">
+            <h1>Subheader here</h1>
+            <div class="line"></div>
+            <p>Description</p>
+        </div>
+        <div class="boxes flex">
+            <div class="box">
+                <div class="box__img">
+                    <img class="slider-bg" src="/static/storage/upload_files">
+                </div>
+                <div class="box__text">
+                    <h1>News Title</h1>
+                    <p>News description</p>
+                    <a href="#">Learn More<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="boxes-button">
+            <a class="btn filled-btn" href="/news">See all news</a>
+        </div>
+    </div>
+</section>
+{{ /block }}

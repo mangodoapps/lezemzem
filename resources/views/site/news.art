@@ -1,0 +1,37 @@
+{{ extend "./theme.art" }}
+
+
+{{ block "content" }}
+
+<section class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="page-header__box container">
+        <h1>{{newsSettings?.title?.[req.language]}}</h1>
+        <p>{{newsSettings?.description?.[req.language]}}</p>
+    </div>
+</section>
+<section class="news">
+    <div class="boxes-container flex column container">
+        <div class="boxes flex">
+            {{ each news haber }}
+            <div class="box pagination-box">
+                <div class="box__img">
+                    <img class="slider-bg" src="/static/storage/upload_files/{{haber.image}}">
+                </div>
+                <div class="box__text">
+                    <h1>{{haber?.title?.[req.language]}}</h1>
+                    <p>{{haber?.description?.[req.language]}}</p>
+                    <a href="/news/{{haber.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            {{ /each }}
+        </div>
+        <div class="pagination">
+            <button id="prev" class="pagination-btn" disabled>{{ lang(req, 'admin.main.Previous') }}</button>
+            <span id="page-info"></span>
+            <button id="next" class="pagination-btn">{{ lang(req, 'admin.main.Next') }}</button>
+        </div>
+    </div>
+</section>
+
+{{ /block }}
