@@ -1,0 +1,20 @@
+{{ if Object.keys(data).length > 0 }}
+    <ul class="flex column">
+        <% Object.entries(data).forEach(([key, folder]) => { %>
+            <li class="file-manager__left__list__item flex column" data-path="{{path}}{{key}}">
+                <div class="file-manager__left__list__item__title flex">
+                    {{ if Object.keys(folder).length > 0 }}
+                        <i class="fa-solid fa-sort-down"></i>
+                    {{ /if }}
+                    <i class="fa-solid fa-folder"></i>
+                    <span>{{ key }}</span>
+                </div>
+                {{ if path === "/" }}
+                    <% include('./left-subFolders.art', {data: folder, path: "/" + key + "/"}) %>
+                {{ else }}
+                    <% include('./left-subFolders.art', {data: folder, path: path + key + "/"}) %>
+                {{ /if }}
+            </li>
+        <% }) %>
+    </ul>
+{{ /if }}

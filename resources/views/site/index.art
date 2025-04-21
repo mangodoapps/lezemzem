@@ -4,17 +4,25 @@
 {{ block "content" }}
 <section class="slider">
     <ul class="items">
-        <li class="item current">
-            <img class="slider-bg" src="/static/storage/img/slider.png">
-            <div class="slider-content flex column">
-                <h1>Le Zemzem</h1>
-                <h2>Content</h2>
-                <p>ŞanlıUrfa’nın Kültürel Mirasından Beslenen Sosyal Kalkınmasına Katkı Sağlamak Amacıyla Yola Çıkan Bir Sosyal Girişimdir</p>
+        {{ if themeHome?.sliders }}
+            {{ each themeHome.sliders slider i }}
+                <li class="item {{if i == 0}}current{{/if}}">
+                    <img class="slider-bg" src="/static/storage/upload_files/{{slider?.image?.[req.language]}}">
+                    <div class="slider-content flex column">
+                        <h1>{{slider?.header?.[req.language]}}</h1>
+                        <h2>{{slider?.title?.[req.language]}}</h2>
+                        <p>{{slider?.content?.[req.language]}}</p>
+                    </div>
+                </li>
+            {{ /each }}
+
+            <div class="dots">
+                {{ each themeHome.sliders slider i }}
+                <button type="button" class="dot {{if i == 0}}current{{/if}}"></button>
+                {{ /each }}
             </div>
-        </li>
-        <div class="dots">
-            <button type="button" class="dot"></button>
-        </div>
+        {{ /if }}
+
     </ul>
     <div class="slider-buttons">
         <button type="button" id="prev" class="prev-btn"></button>
@@ -24,67 +32,79 @@
 
 <section class="overview">
     <div class="overview__boxes flex container">
+        {{ if themeHome?.section_1?.title?.[0] }}
         <div class="overview__box">
             <img src="/static/storage/img/vision.png">
-            <h1>Vizyon</h1>
+            <h1>{{themeHome?.section_1?.title[0]?.[req.language]}}</h1>
             <div class="line"></div>
-            <p>Şanlıurfa’nın kültürel mirasını koruyarak ve geliştirerek, ekonomik ve sosyal kalkınmasına katkı sağlayan, ulusal ve küresel alanda öncü, yaratıcı ve sürdürülebilir çalışmalara imza atan örnek bir sosyal girişim olmak.</p>
+            <p>{{themeHome?.section_1?.content[0]?.[req.language]}}</p>
         </div>
-
+        {{ /if }}
+        {{ if themeHome?.section_1?.title?.[1] }}
         <div class="overview__box">
             <img src="/static/storage/img/mission.png">
-            <h1>Misyon</h1>
+            <h1>{{themeHome?.section_1?.title[1]?.[req.language]}}</h1>
             <div class="line"></div>
-            <p>Şanlıurfa’nın sosyal ve kültürel gelişimine değer katan projeler ve programlar geliştirir, uygular ve destekler. Yerel halkın farkındalığını artırarak, kültürel mirası canlandırmayı ve ekonomik kalkınmayı sağlamayı amaçlar.</p>
+            <p>{{themeHome?.section_1?.content[1]?.[req.language]}}</p>
         </div>
-
+        {{ /if }}
+        {{ if themeHome?.section_1?.title?.[2] }}
         <div class="overview__box">
             <img src="/static/storage/img/goal.png">
-            <h1>Hedef</h1>
+            <h1>{{themeHome?.section_1?.title[2]?.[req.language]}}</h1>
             <div class="line"></div>
-            <p>Şanlıurfa’nın turizm potansiyelini ve kültürel zenginliğini ön plana çıkararak, 5 milyon ziyaretçi ve 1 milyon konaklamaya ulaşmak. Kültür ekonomisini geliştirerek istihdama ve bölgesel kalkınmaya katkı sağlamak.</p>
+            <p>{{themeHome?.section_1?.content[2]?.[req.language]}}</p>
         </div>
+        {{ /if }}
     </div>
 </section>
 
 <section class="features flex">
     <div class="boxes-container flex column container">
         <div class="page-subheader flex column">
-            <h1>Title here</h1>
-            <div class="line"></div>
-            <p>content here</p>
+            {{ if themeHome?.section_2?.title?.[req.language] }}
+                <h1>{{themeHome?.section_2?.title?.[req.language]}}</h1>
+                <div class="line"></div>
+                <p>{{themeHome?.section_2?.description?.[req.language]}}</p>
+            {{ /if }}
         </div>
         <div class="boxes flex">
-            <div class="box">
-                <div class="box__img">
-                    <img class="slider-bg" src="/static/storage/">
-                </div>
-                <div class="box__text">
-                    <h1>box title</h1>
-                    <p>content here</p>
-                    <a href="#">Learn More<i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
+            {{ if solutions && solutions.length > 0 }}
+                {{ each solutions solution }}
+                    <div class="box">
+                        <div class="box__img">
+                            <img class="slider-bg" src="/static/storage/upload_files/{{solution.image}}">
+                        </div>
+                        <div class="box__text">
+                            <h1>{{solution.title[req.language] || ''}}</h1>
+                            <p>{{solution.description[req.language] || ''}}</p>
+                            <a href="/solutions/{{solution.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                {{ /each }}
+            {{ /if }}
         </div>
         <div class="boxes-button">
-            <a class="btn filled-btn" href="#">Our Projects</a>
+            <a class="btn filled-btn" href="/solutions">{{ lang(req, 'admin.main.Our Projects') }}</a>
         </div>
     </div>
 </section>
 
 <section class="donation">
     <div class="donation__content flex container">
+        {{ if themeHome?.section_3 }}
         <div class="donation__img">
-            <img class="slider-bg" src="/static/storage/upload_files">
+            <img class="slider-bg" src="/static/storage/upload_files/{{themeHome?.section_3.image[req.language]}}">
         </div>
         <div class="donation__info flex column">
             <div class="donation__text flex column">
-                <h1>header</h1>
-                <h2>subheader</h2>
-                <p>content</p>
+                <h1>{{themeHome?.section_3.title[req.language]}}</h1>
+                <h2>{{themeHome?.section_3.subtitle[req.language]}}</h2>
+                <p>{{@ themeHome?.section_3?.content[req.language]}}</p>
             </div>
-            <a href="/" class="btn filled-white-btn">İletişime Geçin</a>
+            <a href="/donation" class="btn filled-white-btn">{{ lang(req, 'admin.main.Contact') }}</a>
         </div>
+        {{ /if }}
     </div>
 </section>
 
@@ -98,24 +118,30 @@
 <section class="latest-news">
     <div class="boxes-container flex column container">
         <div class="page-subheader flex column">
-            <h1>Subheader here</h1>
-            <div class="line"></div>
-            <p>Description</p>
+            {{ if themeHome?.section_4?.title }}
+                <h1>{{themeHome?.section_4?.title[req.language]}}</h1>
+                <div class="line"></div>
+                <p>{{themeHome?.section_4?.description[req.language]}}</p>
+            {{ /if }}
         </div>
         <div class="boxes flex">
-            <div class="box">
-                <div class="box__img">
-                    <img class="slider-bg" src="/static/storage/upload_files">
-                </div>
-                <div class="box__text">
-                    <h1>News Title</h1>
-                    <p>News description</p>
-                    <a href="#">Learn More<i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
+            {{ if news && news.length > 0 }}
+                {{ each news haber }}
+                    <div class="box">
+                        <div class="box__img">
+                            <img class="slider-bg" src="/static/storage/upload_files/{{haber.image}}">
+                        </div>
+                        <div class="box__text">
+                            <h1>{{haber.title[req.language] || ''}}</h1>
+                            <p>{{haber.description[req.language] || ''}}</p>
+                            <a href="/news/{{haber.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                {{ /each }}
+            {{ /if }}
         </div>
         <div class="boxes-button">
-            <a class="btn filled-btn" href="/news">See all news</a>
+            <a class="btn filled-btn" href="/news">{{ lang(req, 'admin.main.See All News') }}</a>
         </div>
     </div>
 </section>

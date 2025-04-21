@@ -1,0 +1,68 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.About Page Edit') }}{{/block}}
+{{block "plugins"}}
+    <link rel="stylesheet" href="/static/storage/css/jquery-ui.min.css">
+    <script src="https://cdn.tiny.cloud/1/aeh5pv3iz544juaxo0um7tjvwl4lqnkqbtqy3ye7yg2tpuhx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/static/storage/js/jquery-ui.min.js"></script>
+    <script src="/static/storage/js/admin/abouts/edit.js"></script>
+    <script src="/static/storage/js/admin/content-creator.js"></script>
+{{/block}}
+{{block "content"}}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form__sections flex column">
+            <section>
+                <h3>{{ lang(req, 'admin.main.About Page Details') }}</h3>
+                <div class="inputs flex column">
+                    <div class="windows flex column">
+			    		<div class="windows__windows flex">
+			    			{{ each languages language i }}
+			    			<button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+			    			{{ /each }}
+			    		</div>
+			    		{{ each languages language i }}
+			    		    <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+			    		    	<div class="inputs flex column">
+			    		    		<div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                        <input type="text" name="title[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }} *" value="{{data?.title && language.code ? JSON.parse(data.title)?.[language.code] : null}}" required class="input-text">
+                                    </div>
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Description') }}</b>
+									    <textarea class="editor" name="description[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Description') }}">{{ data?.description && language.code ? JSON.parse(data.description)?.[language.code]  : null }}</textarea>
+                                    </div>
+
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Section 1 Title') }}</b>
+                                        <input type="text" name="section_1_title[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Section 1 Title') }} *" value="{{data?.section_1_title && language.code ? JSON.parse(data.section_1_title)?.[language.code] : null}}" required class="input-text">
+                                    </div>
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Section 1 Description') }}</b>
+									    <textarea class="editor" name="section_1_description[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Section 1 Description') }}">{{ data?.section_1_description && language.code ? JSON.parse(data.section_1_description)?.[language.code]  : null }}</textarea>
+                                    </div>
+                                
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Section 2 Title') }}</b>
+                                        <input type="text" name="section_2_title[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Section 2 Title') }} *" value="{{data?.section_2_title && language.code ? JSON.parse(data.section_2_title)?.[language.code] : null}}" required class="input-text">
+                                    </div>
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Section 2 Description') }}</b>
+									    <textarea class="editor" name="section_2_description[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Section 2 Description') }}">{{ data?.section_2_title && language.code ? JSON.parse(data.section_2_description)?.[language.code]  : null }}</textarea>
+                                    </div>
+			    		    	</div>
+			    		    </div>
+			    		{{ /each }}
+			    	</div>
+
+                    <div class="input">
+                        <button class="button green-button flex">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>{{ lang(req, 'admin.main.Save') }}</span>
+                        </button>
+                    </div>
+
+                </div>         
+                
+            </section>
+        </div>
+    </form>
+{{ /block }}

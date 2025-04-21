@@ -1,0 +1,65 @@
+<script src="/static/storage/js/admin/file-manager.js"></script>
+<div class="file-manager">
+    <div class="flex">
+        <i class="fa-solid fa-xmark"></i>
+        <section class="flex column">
+            <button class="flex button purple-button">
+                <i class="fa-solid fa-plus"></i>
+                <span>{{ lang(req, "admin.main.New Folder") }}</span>
+            </button>
+            <ul>
+                <li>
+                    <a class="flex selected" data-path="/">
+                        <i class="fa-solid fa-folder"></i>
+                        <span>{{ lang(req, "admin.main.Root") }}</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section class="flex column">
+            <div class="file-manager__buttons flex">
+                <input type="search" class="input-text" placeholder="{{ lang(req, 'admin.main.Search')}}">
+                <button class="flex button" data-button-name="upload-file">
+                    <i class="fa-solid fa-upload"></i>
+                    <span>{{ lang(req, "admin.main.Upload File") }}</span>
+                </button>
+                <button class="flex button d-none" data-button-name="delete">
+                    <i class="fa-solid fa-trash"></i>
+                    <span>{{ lang(req, "admin.main.Delete") }}</span>
+                </button>
+            </div>
+            <div class="grid file-manager__files" data-no-file-message="There are no folders or files yet."></div>
+        </section>
+        <section class="flex column">
+            <div class="file-manager__image">
+                <img src="https://codekitapp.com/images/help/app-less-inspector@2x.png">
+            </div>
+            <form>
+                <div class="flex column inputs">
+                    <div class="input flex column">
+                        <b>{{ lang(req, "admin.main.Name") }}</b>
+                        <input type="text" name="name" placeholder="Name *" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, "admin.main.File Name") }}</b>
+                        <span data-name="file_name"><a target="_blank"></a></span>
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, "admin.main.Uploaded By") }}</b>
+                        <span data-name="uploaded_by">BurakAKBULUT</span>
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, "admin.main.Upload Date") }}</b>
+                        <span data-name="upload_date">21.08.1999 21:23</span>
+                    </div>
+                    <div class="input">
+                        <button class="flex button green-button">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>{{ lang(req, "admin.main.Save") }}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

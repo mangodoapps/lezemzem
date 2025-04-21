@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{block "title"}}{{/block}} | {{ lang(req, "admin.main.Admin Panel") }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/storage/css/admin_style.css">
+    <link rel="stylesheet" href="/static/storage/css/jquery-ui.min.css">
+    <script src="/static/storage/js/fontawesome.min.js"></script>
+    <script src="/static/storage/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/storage/js/jquery-ui.min.js"></script>
+    <script src="/static/storage/js/admin/main.js"></script>
+    {{block "plugins"}}{{/block}}
+</head>
+<body>
+    <div class="loadingPopup">
+        <div class="flex">
+            <div class="loadingPopup__content">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <rect x="17.5" y="30" width="15" height="40" fill="#435ebe">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="18;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="64;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+                    </rect>
+                    <rect x="42.5" y="30" width="15" height="40" fill="#5f7ada">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+                    </rect>
+                    <rect x="67.5" y="30" width="15" height="40" fill="#8da5fc">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+                    </rect>
+                </svg>
+                <div class="loadingPopup__content__title">{{ lang(req, "admin.main.Please Wait") }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="warningPopup">
+        <div class="flex">
+            <div class="warningPopup__content">
+                <i class="fa-solid fa-xmark button red-button" data-reload-page="false"></i>
+                <i class="fa-solid fa-check"></i>
+                <div class="warningPopup__content__title" data-message-success="{{ lang(req, 'admin.main.Successful') }}" data-message-unsuccess="{{ lang(req, 'admin.main.Unsuccessful') }}"></div>
+                <div class="warningPopup__content__message" data-message-server-error="{{ lang(req, 'admin.main.Successful') }}"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main flex">
+        <section class="main__left">
+            <div class="logo">
+                <a href="/">
+                    <img src="https://mangodo.com/img/mangodo-logo-text.png" alt="Panel" title="Panel">
+                </a>
+            </div>
+            <nav>
+                <ul class="flex column">
+                    <li {{ if req.url === "/admin" }} class="selected" {{ /if }}>
+                        <a href="/admin" class="flex">
+                            <i class="fa-solid fa-gauge-high"></i>
+                            <span>{{ lang(req, "admin.main.Dashboard") }}</span>
+                        </a>
+                    </li>
+                    <li {{ if req.url.indexOf("/admin/admins") !== -1 }} class="selected" {{ /if }}>
+                        <a href="/admin/admins" class="flex">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>{{ lang(req, 'admin.main.Admin(s)') }}</span>
+                        </a>
+                    </li>
+                    <li {{ if req.url.indexOf("/admin/news") !== -1 }} class="selected" {{ /if }}>
+                        <a class="sublink flex {{ if req.url.indexOf('/admin/news') !== -1 }}{{'active'}}{{ /if }}">
+                            <div class="title flex">
+                                <i class="fa-solid fa-newspaper"></i>
+                                <span>{{ lang(req, "admin.main.News") }}</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <div class="flex">
+                            <ul class="flex">
+                                <li {{ if req.url === "/admin/news" || req.url.indexOf("/admin/news/edit") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/news">{{ lang(req, "admin.main.Content(s)") }}</a>
+                                </li>
+                                <li {{ if req.url.indexOf("/admin/news/settings") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/news/settings">{{ lang(req, "admin.main.Settings") }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li {{ if req.url.indexOf("/admin/solutions") !== -1 }} class="selected" {{ /if }}>
+                        <a class="sublink flex {{ if req.url.indexOf('/admin/solutions') !== -1 }}{{'active'}}{{ /if }}">
+                            <div class="title flex">
+                                <i class="fa-solid fa-file-pen"></i>
+                                <span>{{ lang(req, "admin.main.Projects") }}</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <div class="flex">
+                            <ul class="flex">
+                                <li {{ if req.url === "/admin/solutions" || req.url.indexOf("/admin/solutions/edit") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/solutions">{{ lang(req, "admin.main.Content(s)") }}</a>
+                                </li>
+                                <li {{ if req.url.indexOf("/admin/solutions/settings") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/solutions/settings">{{ lang(req, "admin.main.Settings") }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li {{ if req.url.indexOf("/admin/activities") !== -1 }} class="selected" {{ /if }}>
+                        <a class="sublink flex {{ if req.url.indexOf('/admin/activities') !== -1 }}{{'active'}}{{ /if }}">
+                            <div class="title flex">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span>{{ lang(req, "admin.main.Activities") }}</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <div class="flex">
+                            <ul class="flex">
+                                <li {{ if req.url === "/admin/activities" || req.url.indexOf("/admin/activities/edit") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/activities">{{ lang(req, "admin.main.Content(s)") }}</a>
+                                </li>
+                                <li {{ if req.url.indexOf("/admin/activities/settings") !== -1 }} class="selected" {{ /if }}>
+                                    <a href="/admin/activities/settings">{{ lang(req, "admin.main.Settings") }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li {{ if req.url === "/admin/abouts" }} class="selected" {{ /if }}>
+                        <a href="/admin/abouts/edit" class="flex">
+                            <i class="fa-solid fa-address-card"></i>
+                            <span>{{ lang(req, "admin.main.About Page") }}</span>
+                        </a>
+                    </li>
+                    <li {{ if req.url.indexOf("/admin/theme") !== -1 }} class="selected" {{ /if }}>
+                        <a href="/admin/theme" class="flex">
+                            <i class="fa-solid fa-palette"></i>
+                            <span>{{ lang(req, 'admin.main.Theme') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex file-input file-manager-button">
+                            <i class="fa-solid fa-file-import"></i>
+                            <span>{{ lang(req, 'admin.main.File Manager') }}</span>
+                        </a>
+                    </li>
+                    <li {{ if req.url === "/admin/languages" }} class="selected" {{ /if }}>
+                        <a href="/admin/languages" class="flex">
+                            <i class="fa-solid fa-language"></i>
+                            <span>{{ lang(req, 'admin.main.Languages') }}</span>
+                        </a>
+                    </li>
+                    <li {{ if req.url === "/admin/settings" }} class="selected" {{ /if }}>
+                        <a href="/admin/settings" class="flex">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>{{ lang(req, 'admin.main.Settings') }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        <section class="main__right">
+            <header class="flex">
+                <div class="title">{{block "title"}}{{/block}}</div>
+                <div class="buttons flex">
+                    <!-- <a href="/admin/change-language?lang={{ req.language === 'tr' ? 'en' : 'tr' }}" class="flex">
+                        {{ if req.language === "tr" }}
+                            <img src="/static/storage/img/langs/en.svg">
+                        {{ else }}
+                            <img src="/static/storage/img/langs/tr.svg">
+                        {{ /if }}
+                    </a> -->
+                    <a href="/" target="_blank" class="flex">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>{{ lang(req, 'admin.main.Go to Web Site') }}</span>
+                    </a>
+                    <a href="/admin/profile" class="flex">
+                        <i class="fa-solid fa-user"></i>
+                        <span>{{ user.name_surname }}</span>
+                    </a>
+                    <a href="/admin/logout" class="flex">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>{{ lang(req, 'admin.main.Logout') }}</span>
+                    </a>
+                </div>
+            </header>
+            {{@ include("./includes/file-manager/index.art") }}
+            <main>{{block "content"}}{{/block}}</main>
+        </section>
+    </div>
+</body>
+</html>

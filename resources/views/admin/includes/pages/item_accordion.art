@@ -1,0 +1,33 @@
+<div class="inputs flex column">
+    <div class="windows flex column">
+        <div class="windows__windows flex">
+            <button class="button purple-button flex" data-window-name="tr">{{ lang(req, 'admin.main.Turkish') }}</button>
+            <button class="button flex" data-window-name="en">{{ lang(req, 'admin.main.English') }}</button>
+        </div>
+        <div class="windows__window windows__active" data-window-name="tr">
+            <div class="inputs flex column">
+                <div class="input flex column">
+                    <b>{{ lang(req, "admin.main.Title") }}</b>
+                    <input type="text" name="{{ name }}[accordion][title][tr]" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{ item.accordion.title.tr }}" required class="input-text">
+                </div>
+                <div class="input flex column">
+                    <b>{{ lang(req, 'admin.main.Content') }}</b>
+                    <textarea name="{{ name }}[accordion][content][tr]" class="editor" placeholder="{{ lang(req, 'admin.main.Content') }}">{{ item.accordion.content.tr }}</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="windows__window" data-window-name="en">
+            <div class="inputs flex column">
+                <div class="input flex column">
+                    <b>{{ lang(req, "admin.main.Title") }}</b>
+                    <input type="text" name="{{ name }}[accordion][title][en]" placeholder="{{ lang(req, 'admin.main.Title') }}" value="{{ item.accordion.title.en }}" class="input-text">
+                </div>
+                <div class="input flex column">
+                    <b>{{ lang(req, 'admin.main.Content') }}</b>
+                    <textarea name="{{ name }}[accordion][content][en]" class="editor" placeholder="{{ lang(req, 'admin.main.Content') }}">{{ item.accordion.content.en }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,300 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Theme') }}{{/block}}
+{{block "plugins"}}
+	<script src="https://cdn.tiny.cloud/1/aeh5pv3iz544juaxo0um7tjvwl4lqnkqbtqy3ye7yg2tpuhx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/static/storage/js/admin/theme/index.js"></script>
+	<script src="/static/storage/js/admin/content-creator.js"></script>
+{{/block}}
+{{block "content"}}
+    <div class="windows flex column">
+        <div class="windows__windows flex">
+            <button class="button purple-button flex" data-window-name="home">{{ lang(req, 'admin.main.Home Page') }}</button>
+        </div>
+        <div class="windows__window windows__active" data-window-name="home">
+            {{ set themeHome = theme ? theme.home : null }}
+            <form>
+                <div class="form__sections flex column">
+                    <section>
+                        <h3>{{ lang(req, 'admin.main.Slider(s)') }}</h3>
+                        <div class="inputs flex column">
+                            <div class="input">
+                                <div class="content_creator flex column" data-creator-index="{{ if themeHome && themeHome['sliders'] }}{{ Object.keys(themeHome['sliders']).length }}{{ else }}0{{ /if }}" data-creator-input-name="home[sliders]">
+                                    <div class="content_creator__buttons flex">
+                                        <div class="flex button purple-button" data-creator-button-name="slider">{{ lang(req, 'admin.main.New Slider') }}</div>
+                                    </div>
+                                    <div class="content_creator__items flex column">
+                                        {{ if themeHome && themeHome["sliders"] }}
+                                            {{ each themeHome["sliders"] data index }}
+                                                
+                                                <div class="content_creator__item" data-child-item-index="{{index}}">
+                                                    
+                                                    <div class="content_creator__item__title flex">
+                                                        
+                                                        <span>{{data?.header?.[req.language]}}</span>
+                                                        <div class="content_creator__item__title__actions flex">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                            <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_creator__item__content">
+                                                        <div class="inputs flex column">
+                                                            <div class="windows flex column">
+                                                                <div class="windows__windows flex">
+                                                                    {{ each languages language i }}
+                                                                    <button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+                                                                    {{ /each }}
+                                                                </div>
+                                                                {{ each languages language i }}
+						                                        <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+                                                                    <div class="inputs flex column">
+                                                                        <div class="input flex column">
+                                                                            <b>{{ lang(req, 'admin.main.Header') }}</b>
+                                                                            <input type="text" name="home[sliders][{{index}}][header][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Header *') }}" value="{{data?.['header']?.[language.code]}}" required class="input-text">
+                                                                        </div>
+                                                                        <div class="input flex column">
+                                                                            <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                                                            <input type="text" name="home[sliders][{{index}}][title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{data?.['title']?.[language.code]}}" required class="input-text">
+                                                                        </div>
+                                                                        <div class="input flex column">
+                                                                            <b>{{ lang(req, 'admin.main.Content') }}</b>
+                                                                            <textarea type="text" name="home[sliders][{{index}}][content][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Content *') }}" required class="input-text">{{data?.['content']?.[language.code]}}</textarea>
+                                                                        </div>
+                                                                        <div class="input flex column">
+                                                                            <b>{{ lang(req, 'admin.main.Image') }}</b>
+                                                                            <img class="bigImg" src="/static/storage/upload_files/{{ data?.image?.[language.code] }}">
+                                                                        </div>
+                                                                        <div class="input flex column">
+                                                                            <div class="input">
+                                                                                <label class="file-input file-manager-button button inline-flex purple-button">
+                                                                                    <i class="fa-solid fa-file-import"></i>
+                                                                                    <span data-default-text="{{ lang(req, 'admin.main.Select Image') }}">{{ lang(req, 'admin.main.Select Image') }}</span>
+                                                                                    <input type="hidden" name="home[sliders][{{index}}][image][{{language.code}}]" value="{{ data?.image?.[`${language.code}_id`] }}">
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="input flex column">
+                                                                            <b>{{ lang(req, 'admin.main.Link') }}</b>
+                                                                            <input type="text" name="home[sliders][{{index}}][link][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Link') }}" class="input-text" value="{{data?.link?.[language.code]}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{ /each }}
+                                                            </div>
+                                                            <div class="input flex column">
+                                                                <b>{{ lang(req, 'admin.main.Status') }}</b>
+                                                                <div class="input">
+                                                                    <label class="slide_checkbox">
+                                                                        <input type="checkbox" name="home[sliders][{{index}}][status]" {{ if data["status"] }} checked {{ /if }}>
+                                                                        <div class="slide_checkbox__checkbox"></div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input flex column">
+                                                                <b>{{ lang(req, 'admin.main.New Window') }}</b>
+                                                                <div class="input">
+                                                                    <label class="slide_checkbox">
+                                                                        <input type="checkbox" name="home[sliders][{{index}}][new_window]" {{ if data["new_window"] }} checked {{ /if }}>
+                                                                        <div class="slide_checkbox__checkbox"></div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            {{ /each }}
+                                        {{ else }}
+                                            <span class="message">{{ lang(req, 'admin.main.There are no items yet') }}</span>
+                                        {{ /if }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input">
+                                <button class="button green-button flex">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>{{ lang(req, 'admin.main.Save') }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="inputs flex column">
+
+                            <h3>{{ lang(req, 'admin.main.Section 1') }}</h3>
+
+                            <div class="windows flex column">
+                                <div class="windows__windows flex">
+                                    {{ each languages language i }}
+                                    <button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+                                    {{ /each }}
+                                </div>
+                                {{ each languages language i }}
+						        <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+                                    <div class="inputs flex column">
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                            <div class="flex row">
+                                                <input type="text" name="home[section_1][title][0][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome?.["section_1"]?.["title"]?.[0]?.[language.code] }}">
+                                                <input type="text" name="home[section_1][title][1][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome?.["section_1"]?.["title"]?.[1]?.[language.code] }}">
+                                                <input type="text" name="home[section_1][title][2][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome?.["section_1"]?.["title"]?.[2]?.[language.code] }}">
+                                            </div>
+                                        </div>
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Content') }}</b>
+                                            <div class="flex row">
+                                                <textarea name="home[section_1][content][0][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Content') }}" class="input-text">{{ themeHome?.["section_1"]?.["content"]?.[0]?.[language.code] }}</textarea>
+                                                <textarea name="home[section_1][content][1][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Content') }}" class="input-text">{{ themeHome?.["section_1"]?.["content"]?.[1]?.[language.code] }}</textarea>
+                                                <textarea name="home[section_1][content][2][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Content') }}" class="input-text">{{ themeHome?.["section_1"]?.["content"]?.[2]?.[language.code] }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ /each }}
+                                    
+                            </div>
+
+                            <div class="input">
+                                <button class="button green-button flex">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>{{ lang(req, 'admin.main.Save') }}</span>
+                                </button>
+                            </div>
+
+                    </section>
+                    <section>
+                        <div class="inputs flex column">
+
+                            <h3>{{ lang(req, 'admin.main.Section 2') }}</h3>
+
+                            <div class="windows flex column">
+                                <div class="windows__windows flex">
+                                    {{ each languages language i }}
+                                    <button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+                                    {{ /each }}
+                                </div>
+                                {{ each languages language i }}
+						        <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+                                    <div class="inputs flex column">
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                            <input type="text" name="home[section_2][title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_2"]?.["title"]?.[language.code] : null}}">
+                                        </div>
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Description') }}</b>
+                                            <input type="text" name="home[section_2][description][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Description') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_2"]?.["description"]?.[language.code] : null}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ /each }}
+                                    
+                            </div>
+
+                            <div class="input">
+                                <button class="button green-button flex">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>{{ lang(req, 'admin.main.Save') }}</span>
+                                </button>
+                            </div>
+
+                    </section>
+                    <section>
+                        <div class="inputs flex column">
+
+                            <h3>{{ lang(req, 'admin.main.Section 3') }}</h3>
+
+                            <div class="windows flex column">
+                                <div class="windows__windows flex">
+                                    {{ each languages language i }}
+                                    <button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+                                    {{ /each }}
+                                </div>
+                                {{ each languages language i }}
+						        <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+                                    <div class="inputs flex column">
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Image') }}</b>
+                                            <img class="bigImg" src="/static/storage/upload_files/{{ theme?.home?.section_3?.image?.[language.code] }}">
+                                        </div>
+                                        <div class="input flex column">
+                                            <div class="input">
+                                                <label class="file-input file-manager-button button inline-flex purple-button">
+                                                    <i class="fa-solid fa-file-import"></i>
+                                                    <span data-default-text="{{ lang(req, 'admin.main.Select Image') }}">{{ lang(req, 'admin.main.Select Image') }}</span>
+                                                    <input type="hidden" name="home[section_3][image][{{language.code}}]" value="{{theme ? theme?.home?.section_3?.image[`${language.code}_id`] : null}}">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                            <input type="text" name="home[section_3][title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_3"]?.["title"]?.[language.code] : null}}">
+                                        </div>
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Subtitle') }}</b>
+                                            <input type="text" name="home[section_3][subtitle][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Subtitle') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_3"]?.["subtitle"]?.[language.code] : null}}">
+                                        </div>
+                                        
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Content') }}</b>
+                                            <textarea class="editor" name="home[section_3][content][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Content') }}">
+                                                {{ themeHome?.["section_3"]?.["content"]?.[language.code] || '' }}
+                                            </textarea>
+									    </div>
+                                        
+                                    </div>
+                                </div>
+                                {{ /each }}
+                                    
+                            </div>
+
+                            
+
+                            <div class="input">
+                                <button class="button green-button flex">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>{{ lang(req, 'admin.main.Save') }}</span>
+                                </button>
+                            </div>
+
+                    </section>
+                    <section>
+                        <div class="inputs flex column">
+
+                            <h3>{{ lang(req, 'admin.main.Section 4') }}</h3>
+
+                            <div class="windows flex column">
+                                <div class="windows__windows flex">
+                                    {{ each languages language i }}
+                                    <button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+                                    {{ /each }}
+                                </div>
+                                {{ each languages language i }}
+						        <div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+                                    <div class="inputs flex column">
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                            <input type="text" name="home[section_4][title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_4"]?.["title"]?.[language.code] : null}}">
+                                        </div>
+                                        <div class="input flex column">
+                                            <b>{{ lang(req, 'admin.main.Content') }}</b>
+                                            <input type="text" name="home[section_4][description][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Description') }}" class="input-text" value="{{ themeHome ? themeHome?.["section_4"]?.["description"]?.[language.code] : null}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ /each }}
+                                    
+                            </div>
+
+                            <div class="input">
+                                <button class="button green-button flex">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>{{ lang(req, 'admin.main.Save') }}</span>
+                                </button>
+                            </div>
+
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+{{/block}}

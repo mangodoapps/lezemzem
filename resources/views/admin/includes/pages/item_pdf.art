@@ -1,0 +1,35 @@
+<div class="inputs flex column">
+    <div class="windows flex column">
+        <div class="windows__windows flex">
+            <button class="button purple-button flex" data-window-name="tr">{{ lang(req, 'admin.main.Turkish') }}</button>
+            <button class="button flex" data-window-name="en">{{ lang(req, 'admin.main.English') }}</button>
+        </div>
+        <div class="windows__window windows__active" data-window-name="tr">
+            <div class="inputs flex column">
+                <div class="input flex column">
+            <b>{{ lang(req, 'admin.main.Title') }}</b>
+            <input type="text" name="{{ name }}[pdf][title][tr]" placeholder="{{ lang(req, 'admin.main.PDF Title *') }}" value="{{ item.pdf.title.tr }}" required class="input-text">
+        </div>
+            </div>
+        </div>
+        
+        <div class="windows__window" data-window-name="en">
+            <div class="inputs flex column">
+                <div class="input flex column">
+            <b>{{ lang(req, 'admin.main.Title') }}</b>
+            <input type="text" name="{{ name }}[pdf][title][en]" placeholder="{{ lang(req, 'admin.main.PDF Title') }}" value="{{ item.pdf.title.en }}" class="input-text">
+        </div>
+            </div>
+        </div>
+    </div>
+    <div class="input flex column">
+        <b>{{ lang(req, 'admin.main.PDF File') }}</b>
+        <div class="input">
+            <label class="file-input file-manager-button button inline-flex purple-button">
+                <i class="fa-solid fa-file-import"></i>
+                <span data-default-text="{{ lang(req, 'admin.main.Select PDF File') }}">{{ lang(req, 'admin.main.Select PDF File') }}</span>
+                <input type="hidden" name="{{ name }}[pdf][file][tr]" value="{{ item.pdf.file.tr }}">
+            </label>
+        </div>
+    </div>
+</div>

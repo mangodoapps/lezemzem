@@ -1,0 +1,47 @@
+{{ extend "../../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.News Settings Edit') }}{{/block}}
+{{block "plugins"}}
+	<script src="https://cdn.tiny.cloud/1/aeh5pv3iz544juaxo0um7tjvwl4lqnkqbtqy3ye7yg2tpuhx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="/static/storage/js/admin/news-settings/edit.js"></script>
+{{ /block }}
+{{block "content"}}
+	
+	<form method="POST" enctype="multipart/form-data">
+		<div class="form__sections flex column">
+			<section>
+				<h3>{{ lang(req, 'admin.main.News Settings') }}</h3>
+				<div class="inputs flex column">
+					<div class="windows flex column">
+						<div class="windows__windows flex">
+							{{ each languages language i }}
+							<button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+							{{ /each }}
+						</div>
+
+						{{ each languages language i }}
+						<div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+							<div class="inputs flex column">
+								<div class="input flex column">
+									<b>{{ lang(req, 'admin.main.Title') }}</b>
+									<input type="text" name="news_settings[title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title') }} *" value="{{data?.news_settings?.title && language.code ? data.news_settings.title?.[language.code] : null}}" required class="input-text">
+								</div>
+								<div class="input flex column">
+									<b>{{ lang(req, 'admin.main.Description') }}</b>
+									<input type="text" name="news_settings[description][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Description') }} *" value="{{data?.news_settings?.description && language.code ? data.news_settings.description?.[language.code] : null}}" required class="input-text">
+								</div>
+							</div>
+						</div>
+						{{ /each }}
+					</div>
+					
+					<div class="input">
+						<button class="button green-button flex">
+							<i class="fa-solid fa-floppy-disk"></i>
+							<span>{{ lang(req, 'admin.main.Save') }}</span>
+						</button>
+					</div>
+				</div>
+			</section>
+		</div>
+	</form>
+{{ /block }}

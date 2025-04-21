@@ -1,92 +1,33 @@
 {{ extend "./theme.art" }}
-
-
 {{ block "content" }}
-
 <section class="page-header">
-  <div class="page-header__bg"></div>
-  <div class="page-header__box container mb">
+    <div class="page-header__bg"></div>
+    <div class="page-header__box container">
       <h1>{{solutionSettings?.title?.[req.language]}}</h1>
       <p>{{solutionSettings?.description?.[req.language]}}</p>
-  </div>
+    </div>
 </section>
-<!--
-<section class="solutions flex">
-  <div class="boxes-container flex column container">
-      <div class="page-subheader flex column">
-        <h1>{{categorySettings?.title?.[req.language]}}</h1>
-        <div class="line"></div>
-        <p>{{categorySettings?.description?.[req.language]}}</p>
-      </div>
-      <div class="boxes flex">
-        {{ each categories category }}
+<section class="news">
+    <div class="boxes-container flex column container">
+        <div class="boxes flex">
+          {{ each solutions solution }}
           <div class="box">
-              <div class="box__img">
-                  <img class="slider-bg" src="/static/storage/upload_files/{{category?.image}}">
-              </div>
-              <div class="box__text">
-                  <h1>{{category?.title?.[req.language]}}</h1>
-                  <p>{{category?.subtitle?.[req.language]}}</p>
-                  <a href="/industries/{{category.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
-              </div>
-          </div>
-        {{ /each }}
-      </div>
-  </div>
-</section>
--->
-
-<section class="projects">
-    <div class="projects-container">
-        <div class="swiper-container flex column">
-            <!-- <div class="page-subheader flex column">
-              <h1>{{ lang(req, 'admin.main.Projects') }}</h1>
-              <div class="line"></div>
-              <p>{{ lang(req, 'admin.main.Projects Message') }}</p>
-            </div> -->
-            <div class="boxes flex">
-              {{ each solutions solution }}
-              <div class="box">
-                <div class="box__img">
-                  <img class="slider-bg" src="/static/storage/upload_files/{{solution.image}}">
-                </div>
-                <div class="box__text">
-                  <h1>{{solution?.title?.[req.language] || ''}}</h1>
-                  <p>{{solution?.description?.[req.language] || ''}}</p>
-                  <a href="/solutions/{{solution.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-              </div>
-              {{ /each }}
-              
+            <div class="box__img">
+              <img class="slider-bg" src="/static/storage/upload_files/{{solution.image}}">
             </div>
-            <!--<div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>  
-            <div class="swiper-pagination"></div>-->
+            <div class="box__text">
+              <h1>{{solution?.title?.[req.language] || ''}}</h1>
+              <p>{{solution?.description?.[req.language] || ''}}</p>
+              <a href="/solutions/{{solution.seo_url}}">{{ lang(req, 'admin.main.Learn More') }}<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          {{ /each }}
+        </div>
+        <div class="pagination">
+            <button id="prev" class="pagination-btn" disabled>{{ lang(req, 'admin.main.Previous') }}</button>
+            <span id="page-info"></span>
+            <button id="next" class="pagination-btn">{{ lang(req, 'admin.main.Next') }}</button>
         </div>
     </div>
 </section>
-
-<!-- <section class="numbers flex">
-  <div class="numbers__box flex column">
-      <h1>15+</h1>
-      <h2>{{ lang(req, 'admin.main.PROJECTS') }}</h2>
-  </div>
-  <div class="numbers__box flex column">
-      <h1>100+</h1>
-      <h2>{{ lang(req, 'admin.main.CUSTOMERS') }}</h2>
-  </div>
-  <div class="numbers__box flex column">
-      <h1>250</h1>
-      <h2>{{ lang(req, 'admin.main.AREAS') }}</h2>
-  </div>
-  <div class="numbers__box flex column">
-      <h1>15+</h1>
-      <h2>{{ lang(req, 'admin.main.COUNTRIES') }}</h2>
-  </div>
-  <div class="numbers__box flex column">
-      <h1>80+</h1>
-      <h2>{{ lang(req, 'admin.main.SERVICES') }}</h2>
-  </div>
-</section> -->
-
 {{ /block }}

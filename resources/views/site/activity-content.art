@@ -1,0 +1,28 @@
+{{ extend "./theme.art" }}
+
+
+{{ block "content" }}
+
+<section class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="page-header__box container">
+        <h1>{{data?.title?.[req.language] || ''}}</h1>
+        <p>{{data?.description?.[req.language] || ''}}</p>
+    </div>
+</section>
+<section class="banner">
+    <div class="container">
+        <img src="/static/storage/upload_files/{{data?.image}}" alt="banner">
+    </div>
+</section>
+<section class="content container">
+    <div class="page-subheader flex column">
+        <h1>{{data?.subtitle?.[req.language] || ''}}</h1>
+        <div class="line"></div>
+    </div> 
+    <div class="content__text">
+        <p>{{@ data?.content?.[req.language] || ''}}</p>
+    </div>
+</section>
+
+{{ /block }}

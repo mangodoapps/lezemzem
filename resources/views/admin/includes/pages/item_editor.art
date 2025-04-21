@@ -1,0 +1,25 @@
+<div class="inputs flex column">
+    <div class="windows flex column">
+        <div class="windows__windows flex">
+            <button class="button purple-button flex" data-window-name="tr">{{ lang(req, 'admin.main.Turkish') }}</button>
+            <button class="button flex" data-window-name="en">{{ lang(req, 'admin.main.English') }}</button>
+        </div>
+        <div class="windows__window windows__active" data-window-name="tr">
+            <div class="inputs flex column">
+                <div class="input flex column">
+                    <b>{{ lang(req, 'admin.main.Content') }}</b>
+                    <textarea name="{{ name }}[editor][content][tr]" class="editor" placeholder="{{ lang(req, 'admin.main.Content') }}">{{ item.editor.content.tr }}</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="windows__window" data-window-name="en">
+            <div class="inputs flex column">
+                <div class="input flex column">
+                    <b>{{ lang(req, 'admin.main.Content') }}</b>
+                    <textarea name="{{ name }}[editor][content][en]" class="editor" placeholder="{{ lang(req, 'admin.main.Content') }}">{{ item.editor.content.en }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

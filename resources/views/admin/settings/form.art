@@ -1,0 +1,229 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Settings') }}{{/block}}
+{{block "plugins"}}
+	<script src="/static/storage/js/admin/settings/main.js"></script>
+{{/block}}
+{{block "content"}}
+	<div class="windows flex column">
+		<div class="windows__windows flex">
+			<button class="button purple-button flex" data-window-name="general-settings">{{ lang(req, 'admin.main.General Settings') }}</button>
+			<button class="button flex" data-window-name="email-settings">{{ lang(req, 'admin.main.E-Mail Settings') }}</button>
+			<button class="button flex" data-window-name="social-media">{{ lang(req, 'admin.main.Social Media') }}</button>
+			<button class="button flex" data-window-name="contact">{{ lang(req, 'admin.main.Contact') }}</button>
+			<button class="button flex" data-window-name="integrations">{{ lang(req, 'admin.main.Integrations') }}</button>
+		</div>
+		<div class="windows__window windows__active" data-window-name="general-settings">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.General Settings') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Business Name') }}</b>
+								<input type="text" name="business_name" placeholder="{{ lang(req, 'admin.main.Business Name *') }}" value="{{ data.business_name || '' }}" required class="input-text">
+							</div>
+							<div class="windows flex column">
+							    <div class="windows__windows flex">
+									{{ each languages language i }}
+									<button class="button flex {{if i == 0}}purple-button{{/if}}" data-window-name="{{language.code}}">{{ lang(req, 'admin.main.' + language.name) }}</button>
+									{{ /each }}
+							    </div>
+
+								{{ each languages language i }}
+
+								<div class="windows__window {{if i == 0}}windows__active{{/if}}" data-window-name="{{language.code}}">
+							        <div class="inputs flex column">
+										<div class="input flex column">
+											<b>{{ lang(req, 'admin.main.Site Title') }}</b>
+											<input type="text" name="site_title[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Site Title *') }}" value="{{ data?.site_title ? data.site_title[language.code]: null }}" required class="input-text">
+										</div>
+										<div class="input flex column">
+											<b>{{ lang(req, 'admin.main.Site Description') }}</b>
+											<input type="text" name="site_description[{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Site Description *') }}" value="{{ data?.site_description ? data.site_description[language.code] : null }}" required class="input-text">
+										</div>
+							        </div>
+							    </div>
+
+								{{ /each }}
+							</div>
+							
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Maintenance') }}</b>
+								<div class="input">
+									<label class="slide_checkbox">
+										<input type="checkbox" name="site_maintenance" {{ if data?.site_maintenance === "active" }} checked {{ /if }}>
+										<div class="slide_checkbox__checkbox"></div>
+									</label>
+								</div>
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Logo') }}</b>
+								<img class="bigImg" src="/static/storage/upload_files/{{ data?.business_name ? Str.slug(data.business_name) : null }}-logo.png">
+							</div>
+							<div class="input flex column">
+								<div class="input">
+									<label class="file-input button inline-flex purple-button">
+										<i class="fa-solid fa-file-import"></i>
+										<span data-default-text="{{ lang(req, 'admin.main.Select Image') }}">{{ lang(req, 'admin.main.Select Image') }}</span>
+										<input type="file" name="logo" accept=".png">
+									</label>
+								</div>
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Favicon') }}</b>
+								<div class="input">
+									<label class="file-input button inline-flex purple-button">
+										<i class="fa-solid fa-file-import"></i>
+										<span data-default-text="{{ lang(req, 'admin.main.Select Favicon') }}">{{ lang(req, 'admin.main.Select Favicon') }}</span>
+										<input type="file" name="favicon" accept=".ico">
+									</label>
+								</div>
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+		<div class="windows__window" data-window-name="email-settings">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.E-Mail Settings') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Host') }}</b>
+								<input type="text" name="host" placeholder="{{ lang(req, 'admin.main.Host *') }}" value="{{ env.MAIL_HOST }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Port') }}</b>
+								<input type="text" name="port" placeholder="{{ lang(req, 'admin.main.Port *') }}" value="{{ env.MAIL_PORT }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Username') }}</b>
+								<input type="email" name="username" placeholder="{{ lang(req, 'admin.main.Username *') }}" value="{{ env.MAIL_USERNAME }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Password') }}</b>
+								<input type="password" name="password" placeholder="{{ lang(req, 'admin.main.Password *') }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Secure') }}</b>
+								<div class="input">
+									<label class="slide_checkbox">
+										<input type="checkbox" name="secure" {{ if env.MAIL_SECURE === "true" }} checked {{ /if }}>
+										<div class="slide_checkbox__checkbox"></div>
+									</label>
+								</div>
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+		<div class="windows__window" data-window-name="social-media">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.Social Media Accounts') }}</h3>
+						{{ set socialMedia = data?.social_media ? JSON.parse(data.social_media) : null }}
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>Facebook</b>
+								<input type="text" name="social_media[facebook]" placeholder="Facebook Link" value="{{socialMedia?.facebook}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>Twitter</b>
+								<input type="text" name="social_media[twitter]" placeholder="Twitter Link" value="{{socialMedia?.twitter}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>Linkedin</b>
+								<input type="text" name="social_media[linkedin]" placeholder="Linkedin Link" value="{{socialMedia?.linkedin}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>Youtube</b>
+								<input type="text" name="social_media[youtube]" placeholder="Youtube Link" value="{{socialMedia?.youtube}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>Instagram</b>
+								<input type="text" name="social_media[instagram]" placeholder="Instagram Link" value="{{socialMedia?.instagram}}" class="input-text">
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+		<div class="windows__window" data-window-name="contact">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.Contact Settings') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.E-Mail Address') }}</b>
+								<input type="email" name="contact_email" placeholder="{{ lang(req, 'admin.main.E-Mail Address') }}" value="{{data?.email}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Phone Number') }}</b>
+								<input type="text" name="contact_phone" placeholder="{{ lang(req, 'admin.main.Phone Number') }}" value="{{data?.phone}}" class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Head Office Address') }}</b>
+								<input type="text" name="contact_address" placeholder="{{ lang(req, 'admin.main.Address') }}" value="{{ data?.address }}" class="input-text">
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+		<div class="windows__window" data-window-name="integrations">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.Google Re-captcha') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Site Key') }}</b>
+								<input type="text" name="site_key" placeholder="{{ lang(req, 'admin.main.Site Key') }} *" value="{{ env.GOOGLE_RECAPTCHA_SITEKEY }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Secret Key') }}</b>
+								<input type="text" name="secret_key" placeholder="{{ lang(req, 'admin.main.Secret Key') }} *" value="{{ env.GOOGLE_RECAPTCHA_SECRETKEY }}" required class="input-text">
+							</div>
+							
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+	</div>
+{{ /block }}

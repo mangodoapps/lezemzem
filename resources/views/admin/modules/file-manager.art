@@ -1,0 +1,106 @@
+<div class="file-manager">
+    <div class="flex">
+        <div class="file-manager__container flex">
+            <i class="fa-solid fa-xmark"></i>
+            <div class="file-manager__left flex column">
+                <button class="button purple-button flex">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>{{ lang(req, 'admin.main.New Folder') }}</span>
+                </button>
+                <div class="file-manager__left__list__scroll">
+                    <ul class="file-manager__left__list flex column">
+                        <li class="file-manager__left__list__item current flex column" data-path="/">
+                            <div class="file-manager__left__list__item__title flex">
+                                {{ if Object.keys(folders).length > 0 }}
+                                    <i class="fa-solid fa-sort-down"></i>
+                                {{ /if }}
+                                <i class="fa-solid fa-folder"></i>
+                                <span>{{ lang(req, 'admin.main.Home Page') }}</span>
+                            </div>
+                            <% include('./file-manager/left-subFolders.art', {data: folders, path: "/"}) %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="file-manager__right flex">
+                <% include('./file-manager/right-left.art') %>
+                <div class="file-manager__right__right flex column">
+                    <div class="file-manager__right__right__section flex column" data-section-name='folder'>
+                        <table>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Name') }}</b></td>
+                                <td data-table-field-name='name'>
+                                    <input type="text" name="file_manager[folder][name]" placeholder="{{ lang(req, 'admin.main.Name *') }}" required class="input-text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Path') }}</b></td>
+                                <td data-table-field-name='path'>
+                                    <input type="text" name="file_manager[folder][path]" placeholder="{{ lang(req, 'admin.main.Path *') }}" required class="input-text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Upload Date') }}</b></td>
+                                <td data-table-field-name='created_at'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Uploaded By') }}</b></td>
+                                <td data-table-field-name='creator'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Edit Date') }}</b></td>
+                                <td data-table-field-name='edited_at'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Edited By') }}</b></td>
+                                <td data-table-field-name='editor'></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="file-manager__right__right__section flex column" data-section-name='file'>
+                        <img src="https://www.terayatirim.com/dosyalar/site/logo-white.svg">
+                        <table>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Name') }}</b></td>
+                                <td data-table-field-name='name'>
+                                    <input type="text" name="file_manager[file][name]" placeholder="{{ lang(req, 'admin.main.Name *') }}" required class="input-text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Path') }}</b></td>
+                                <td data-table-field-name='path'>
+                                    <input type="text" name="file_manager[file][path]" placeholder="{{ lang(req, 'admin.main.Path *') }}" required class="input-text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.File Name') }}</b></td>
+                                <td data-table-field-name='file_name'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Upload Date') }}</b></td>
+                                <td data-table-field-name='created_at'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Uploaded By') }}</b></td>
+                                <td data-table-field-name='creator'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Edit Date') }}</b></td>
+                                <td data-table-field-name='edited_at'></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ lang(req, 'admin.main.Edited By') }}</b></td>
+                                <td data-table-field-name='editor'></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="file-manager__right__right__buttons flex">
+                        <button class="button red-button flex">
+                            <span>{{ lang(req, 'admin.main.Delete') }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

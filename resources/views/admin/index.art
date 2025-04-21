@@ -1,0 +1,146 @@
+{{ extend "./theme.art" }}
+{{block "title"}}{{ lang(req, "admin.main.Dashboard") }}{{/block}}
+{{block "content"}}
+    <div class="dashboard">
+        <div class="dashboard__infos flex">
+            <section class="flex">
+                <div class="dashboard__infos__info">
+                    <h3>13</h3>
+                    <h4>{{ lang(req, "admin.main.Views") }}</h4>
+                </div>
+                <i class="fa-solid fa-xmark"></i>
+            </section>
+            <section class="flex">
+                <div class="dashboard__infos__info">
+                    <h3>13</h3>
+                    <h4>{{ lang(req, "admin.main.Views") }}</h4>
+                </div>
+                <i class="fa-solid fa-xmark"></i>
+            </section>
+            <section class="flex">
+                <div class="dashboard__infos__info">
+                    <h3>13</h3>
+                    <h4>{{ lang(req, "admin.main.Views") }}</h4>
+                </div>
+                <i class="fa-solid fa-xmark"></i>
+            </section>
+            <section class="flex">
+                <div class="dashboard__infos__info">
+                    <h3>13</h3>
+                    <h4>{{ lang(req, "admin.main.Views") }}</h4>
+                </div>
+                <i class="fa-solid fa-xmark"></i>
+            </section>
+        </div>
+        <div class="dashboard__tables grid">
+            <div class="dashboard__tables__table dashboard__tables__3">
+                <div class="title flex">
+                    <i class="fa-solid fa-key"></i>
+                    <span>{{ lang(req, "admin.main.Last Login(s)") }}</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ lang(req, "admin.main.Username") }}</th>
+                            <th>{{ lang(req, "admin.main.Date") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dashboard__tables__table dashboard__tables__3">
+                <div class="title flex">
+                    <i class="fa-solid fa-key"></i>
+                    <span>{{ lang(req, "admin.main.Last Login(s)") }}</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ lang(req, "admin.main.Username") }}</th>
+                            <th>{{ lang(req, "admin.main.Date") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dashboard__tables__table dashboard__tables__3">
+                <div class="title flex">
+                    <i class="fa-solid fa-key"></i>
+                    <span>{{ lang(req, "admin.main.Last Login(s)") }}</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ lang(req, "admin.main.Username") }}</th>
+                            <th>{{ lang(req, "admin.main.Date") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                        <tr>
+                            <td>TheBurakAkbulut</td>
+                            <td>21.08.1999</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{{/block}}

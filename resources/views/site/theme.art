@@ -24,14 +24,14 @@
         <div class="header__menu flex">
             <div class="header__pages">
                 <ul class="navigation flex">
-                    <li><a href="/about">Hakkımızda</a></li>
-                    <li><a href="/solutions">Projeler</a></li>
-                    <li><a href="/news">Haberler</a></li>
-                    <li><a href="/">Etkinlikler</a></li>
+                    <li><a href="/about">{{ lang(req, 'admin.main.About Us') }}</a></li>
+                    <li><a href="/solutions">{{ lang(req, 'admin.main.Projects') }}</a></li>
+                    <li><a href="/news">{{ lang(req, 'admin.main.Latest News') }}</a></li>
+                    <li><a href="/activities">{{ lang(req, 'admin.main.Activities') }}</a></li>
                 </ul>
             </div>
             <div class="header__buttons flex">
-                <a  href="/contact" class="btn filled-btn">İletişime Geçin</a>
+                <a  href="/contact" class="btn filled-btn">{{ lang(req, 'admin.main.Contact') }}</a>
                 <!--<div class="language-dropdown">
                     <a class="btn language-btn flex">
                         <span class="flag-circle">
@@ -59,30 +59,30 @@
             <div class="footer__logo">
                 <a href="/"><img src="/static/storage/img/logo-black.png" alt="Logo"></a>
             </div>
-            <a href="/contact" class="btn white-btn">İLETİŞİME GEÇİN<i class="fa-solid fa-location-arrow"></i></a>
+            <a href="/contact" class="btn white-btn">{{ lang(req, 'admin.main.Contact') }}<i class="fa-solid fa-location-arrow"></i></a>
         </div>
         <div class="footer__right flex">
             <div class="footer__menu">
                 <ul class="navigation flex column">
                     <div class="line"></div>
-                    <li><a href="/about">Hakkımızda</a></li>
-                    <li><a href="/solutions">Projeler</a></li>
-                    <li><a href="/news">Haberler</a></li>
-                    <li><a href="/">Etkinlikler</a></li>
+                    <li><a href="/about">{{ lang(req, 'admin.main.About Us') }}</a></li>
+                    <li><a href="/solutions">{{ lang(req, 'admin.main.Projects') }}</a></li>
+                    <li><a href="/news">{{ lang(req, 'admin.main.Latest News') }}</a></li>
+                    <li><a href="/activities">{{ lang(req, 'admin.main.Activities') }}</a></li>
                 </ul>
             </div>
             <div class="footer__policies flex column">
                 <div class="line"></div>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms and Conditions</a>
-                <span>© 2025 Le Zemzem</span>
+                <a href="#">{{ lang(req, 'admin.main.Privacy Policy') }}</a>
+                <a href="#">{{ lang(req, 'admin.main.Terms and Conditions') }}</a>
+                <span>© 2025 {{settings?.business_name}}</span>
             </div>
             <div class="footer__info flex column">
-                <a href="tel:{{settings?.phone}}"><i class="fa-solid fa-phone"></i>00000000000</a>
-                <a href="{{settings?.email}}"><i class="fa-solid fa-envelope"></i>ornek@mail.com</a>
+                <a href="tel:{{settings?.phone}}"><i class="fa-solid fa-phone"></i>{{settings?.phone}}</a>
+                <a href="{{settings?.email}}"><i class="fa-solid fa-envelope"></i>{{settings?.email}}</a>
             </div>
             <div class="social flex column">
-                <span>Follow us:</span>
+                <span>{{ lang(req, 'admin.main.Follow us') }}:</span>
                 <div class="social__links flex">
                     <a href="{{ settings?.social_media?.facebook }}" target="_blank" class="social-icon facebook">
                         <i class="fab fa-facebook-f"></i>

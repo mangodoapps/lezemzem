@@ -1,0 +1,52 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Industries') }}{{/block}}
+{{block "plugins"}}
+    <script src="/static/storage/js/admin/categories/index.js"></script>
+{{ /block }}
+{{block "content"}}
+    <div class="main__buttons flex">
+        <a href="/admin/categories/new" class="button green-button flex">
+            <i class="fa-solid fa-plus"></i>
+            <span>{{ lang(req, 'admin.main.New Category') }}</span>
+        </a>
+    </div>
+    {{ if Object.keys(datas).length !== 0 }}
+        <div class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ lang(req, 'admin.main.Name') }}</th>
+                        <th>{{ lang(req, 'admin.main.Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ each datas data }}
+                        <tr data-id="{{data.id}}">
+                            <td width="100">
+                                <span class="background-text {{ if data.status === 'active' }}green{{ else if data.status === 'deactive' }}red{{ /if }}-background-text">
+                                    {{ if data.status === 'active' }}{{ lang(req, 'admin.main.Active') }}{{ else if data.status === 'deactive' }}{{ lang(req, 'admin.main.Deactive') }}{{ /if }}
+                                </span>
+                            </td>
+                            <td>{{ if data.title }}{{ JSON.parse(data.title).en }}{{ else }}<i>{{ lang(req, 'admin.main.New Data') }}</i>{{ /if }}</td>
+                            <td width="100">
+                                <div class="actions flex">
+                                    <a href="/admin/categories/edit?id={{data.id}}" title="{{ lang(req, 'admin.main.Edit') }}"><i class="fa-solid fa-pen"></i></a>
+                                    <div class="actions__buttons">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <ul class="column">
+                                            <li><a href="/admin/categories/delete?id={{data.id}}" class="red-text">{{ lang(req, 'admin.main.Delete') }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {{ /each }}
+                </tbody>
+            </table>
+            <span class="count">{{ lang(req, req.language + '.Count Of Records') }}: {{ Object.keys(datas).length }}</span>
+        </div>
+    {{ else }}
+        <span>{{ lang(req, 'admin.main.No data yet') }}</span>
+    {{ /if }}
+{{ /block }}

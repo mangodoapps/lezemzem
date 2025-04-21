@@ -1,0 +1,40 @@
+<div class="file-manager__right__left flex column">
+    <div class="file-manager__right__toolbar flex">
+        <button class="button flex" data-action="upload-file">
+            <i class="fa-solid fa-upload"></i>
+            <span>{{ lang(req, 'admin.main.Upload File') }}</span>
+        </button>
+    </div>
+    {{ if files.length > 0 }}
+        <div class="file-manager__right__files__scroll">
+            <div class="file-manager__right__files grid">
+                <% files.forEach(([key, file]) => { %>
+                    {{ if file.type === "folder" }}
+                        <div class="file-manager__right__files__file flex column" data-type="folder" data-media-id="{{file.id}}">
+                            <i class="fa-solid fa-folder"></i>
+                            <span>{{file.name}}</span>
+                        </div>
+                    {{ else if file.type === "file" }}
+                        <div class="file-manager__right__files__file flex column" data-type="file" data-media-id="{{file.id}}">
+                            {{ if 
+                                file.file_name.indexOf(".jpg") !== -1 ||
+                                file.file_name.indexOf(".jpeg") !== -1 || 
+                                file.file_name.indexOf(".png") !== -1 || 
+                                file.file_name.indexOf(".gif") !== -1 || 
+                                file.file_name.indexOf(".webp") !== -1 || 
+                                file.file_name.indexOf(".svg") !== -1
+                            }}
+                                <i class="fa-solid fa-image"></i>
+                            {{ else }}
+                                <i class="fa-solid fa-file"></i>
+                            {{ /if }}
+                            <span>{{file.name}}</span>
+                        </div>
+                    {{ /if }}
+                <% }) %>
+            </div>
+        </div>
+    {{ else }}
+        <span>{{ lang(req, 'admin.main.There are no files & folders yet') }}</span>
+    {{ /if }}
+</div>

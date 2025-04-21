@@ -1,0 +1,71 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Profile Settings') }}{{/block}}
+{{block "plugins"}}
+	<script src="/static/storage/js/admin/profile/form.js"></script>
+{{ /block }}
+{{block "content"}}
+	<div class="windows flex column">
+		<div class="windows__windows flex">
+			<button class="button purple-button flex" data-window-name="account">{{ lang(req, 'admin.main.Account') }}</button>
+			<button class="button flex" data-window-name="change-password">{{ lang(req, 'admin.main.Change Password') }}</button>
+		</div>
+		<div class="windows__window windows__active" data-window-name="account">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.Account') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Username') }}</b>
+								<input type="text" name="username" value="{{ user.username }}" class="input-text" disabled>
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Full Name') }}</b>
+								<input type="text" name="full_name" placeholder="{{ lang(req, 'admin.main.Full Name') }}" value="{{ user.full_name }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.E-Mail') }}</b>
+								<input type="email" name="email" placeholder="{{ lang(req, 'admin.main.E-Mail Address') }}" value="{{ user.email }}" required class="input-text">
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+		<div class="windows__window" data-window-name="change-password">
+			<form>
+				<div class="form__sections flex column">
+					<section>
+						<h3>{{ lang(req, 'admin.main.Change Password') }}</h3>
+						<div class="inputs flex column">
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.Old Password') }}</b>
+								<input type="password" name="old_password" placeholder="{{ lang(req, 'admin.main.Old Password *') }}" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.New Password') }}</b>
+								<input type="password" name="new_password" placeholder="{{ lang(req, 'admin.main.New Password *') }}" minlength="8" required class="input-text">
+							</div>
+							<div class="input flex column">
+								<b>{{ lang(req, 'admin.main.New Password (Repeat)') }}</b>
+								<input type="password" name="new_password_repeat" placeholder="{{ lang(req, 'admin.main.New Password (Repeat) *') }}" minlength="8" required class="input-text">
+							</div>
+							<div class="input">
+								<button class="button green-button flex">
+									<i class="fa-solid fa-floppy-disk"></i>
+									<span>{{ lang(req, 'admin.main.Save') }}</span>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</form>
+		</div>
+	</div>
+{{ /block }}

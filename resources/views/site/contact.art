@@ -6,48 +6,48 @@
 <section class="page-header contact-bg">
     <div class="page-header__bg contact-overlay"></div>
     <div class="page-header__box container">
-        <h1>Contact Us</h1>
-        <p>Contact Us Message</p>
+        <h1>{{ lang(req, 'admin.main.Contact Us') }}</h1>
+        <p>{{ lang(req, 'admin.main.Contact Us Message') }}</p>
     </div>
 </section>
 <section class="contact">
     <div class="container flex column">
         <div class="contact__content flex">
             <div class="contact__info flex column">
-                <h1>Contact Details</h1>
+                <h1>{{ lang(req, 'admin.main.Contact Details') }}</h1>
                 <div class="contact__info__item">
-                    <a href="#"><i class="fa-solid fa-envelope"></i>ornek@mail.com</a>
+                    <a href="{{settings?.email}}"><i class="fa-solid fa-envelope"></i>{{settings?.email}}</a>
                 </div>
                 <div class="contact__info__item">
-                    <a href="tel:"><i class="fa-solid fa-phone"></i>00000000000</a>
+                    <a href="tel:{{settings?.phone}}"><i class="fa-solid fa-phone"></i>{{settings?.phone}}</a>
                 </div>
                 <div class="contact__info__item flex">
                     <i class="fa-solid fa-map-pin"></i>
-                    <p>address</p>
+                    <p>{{settings?.address}}</p>
                 </div>
             </div>
             <div class="contact__form">
-                <h2>Get in touch</h2>
-                <p>Feel free to leave us a message, and we'll get back to you as soon as possible.</p>
+                <h2>{{ lang(req, 'admin.main.Get in Touch') }}</h2>
+                <p>{{ lang(req, 'admin.main.Get in Touch Message') }}</p>
 
                 <form action="#" method="post">
                     <div class="contact__form__item flex column">
-                        <label for="first-name">Ad</label>
+                        <label for="first-name">{{ lang(req, 'admin.main.First Name') }}</label>
                         <input type="text" id="first-name" name="first-name" required>
                     </div>
                     <div class="contact__form__item flex column">
-                        <label for="last-name">Soyad</label>
+                        <label for="last-name">{{ lang(req, 'admin.main.Last Name') }}</label>
                         <input type="text" id="last-name" name="last-name" required>
                     </div>
                     <div class="contact__form__item flex column">
-                        <label for="email">E-posta</label>
+                        <label for="email">{{ lang(req, 'admin.main.Email') }}</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="contact__form__item flex column">
-                        <label for="message">Mesajınız</label>
+                        <label for="message">{{ lang(req, 'admin.main.Message') }}</label>
                         <textarea name="message" id="message" rows="5" required></textarea>
                     </div>
-                    <button class="btn filled-btn" type="submit">Gönder</button>
+                    <button class="btn filled-btn" type="submit">{{ lang(req, 'admin.main.Submit') }}</button>
                 </form>
             </div>
         </div>

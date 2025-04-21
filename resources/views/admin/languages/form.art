@@ -1,0 +1,61 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, req.language + '.Language Edit') }}{{/block}}
+{{block "plugins"}}
+    <script src="/static/storage/js/admin/languages/edit.js"></script>
+{{/block}}
+{{block "content"}}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form__sections flex column">
+            <section>
+                <h3>{{ lang(req, req.language + '.Language Details') }}</h3>
+                <div class="inputs flex column">
+                    <div class="input flex column">
+                        <b>{{ lang(req, req.language + '.Name') }}</b>
+                        <input type="text" name="name" placeholder="{{ lang(req, req.language + '.Name') }} *" value="{{data.name}}" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, req.language + '.Code') }}</b>
+                        <input type="text" name="code" placeholder="{{ lang(req, req.language + '.Code') }} *" value="{{data.code}}" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, req.language + '.Icon') }}</b>
+                        <img class="bigImg" src="/static/storage/img/langs/{{data.code}}.svg">
+                    </div>
+                    <div class="input flex column">
+                        <div class="input">
+                            <label class="file-input button inline-flex purple-button">
+                                <i class="fa-solid fa-file-import"></i>
+                                <span data-default-text="{{ lang(req, req.language + '.Select Icon') }}">{{ lang(req, req.language + '.Select Icon') }}</span>
+                                <input type="file" name="icon" accept=".svg">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input flex column">
+                        <div class="input">
+                            <label class="file-input button inline-flex purple-button">
+                                <i class="fa-solid fa-file-import"></i>
+                                <span data-default-text="{{ lang(req, req.language + '.Select Json File') }}">{{ lang(req, req.language + '.Select Json File') }}</span>
+                                <input type="file" name="json_file" accept=".json">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, req.language + '.Status') }}</b>
+                        <div class="input">
+                            <label class="slide_checkbox">
+                                <input type="checkbox" name="status" {{ if data.status === "active" }} checked {{ /if }}>
+                                <div class="slide_checkbox__checkbox"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <button class="button green-button flex">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>{{ lang(req, req.language + '.Save') }}</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+{{ /block }}

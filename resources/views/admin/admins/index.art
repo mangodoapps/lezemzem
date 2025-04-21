@@ -1,0 +1,54 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Admins') }}{{/block}}
+{{block "content"}}
+    <div class="main__buttons flex">
+        <a href="/admin/admins/new" class="button green-button flex">
+            <i class="fa-solid fa-plus"></i>
+            <span>{{ lang(req, 'admin.main.New Admin') }}</span>
+        </a>
+    </div>
+    {{ if datas && Object.keys(datas).length !== 0 }}
+        <div class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ lang(req, 'admin.main.Admin Name') }}</th>
+                        <th>{{ lang(req, 'admin.main.Email') }}</th>
+                        <th>{{ lang(req, 'admin.main.Phone') }}</th>
+                        <th>{{ lang(req, 'admin.main.Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ each datas data }}
+                    <tr>
+                        <td width="100">
+                            <span
+                                class="background-text {{ if data.status === 'active' }}green{{ else if data.status === 'deactive' }}red{{ /if }}-background-text">
+                                {{ if data.status === 'active' }}{{ lang(req, 'admin.main.Active') }}{{ else if data.status === 'deactive' }}{{ lang(req, 'admin.main.Deactive') }}{{ /if }}
+                            </span>
+                        </td>
+                        <td>{{ if data.name_surname }}{{ data.name_surname }}{{ else }}<i>{{ lang(req, 'admin.main.New Data') }}</i>{{ /if }}</td>
+                        <td>{{ if data.email }}{{ data.email }}{{ else }}<i>{{ lang(req, 'admin.main.New Data') }}</i>{{ /if }}</td>
+                        <td>{{ if data.phone }}{{ data.phone }}{{ else }}<i>{{ lang(req, 'admin.main.New Data') }}</i>{{ /if }}</td>
+                        <td width="100">
+                            <div class="actions flex">
+                                <a href="/admin/admins/edit?id={{data.id}}" title="{{ lang(req, 'admin.main.Edit') }}"><i class="fa-solid fa-pen"></i></a>
+                                <div class="actions__buttons">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <ul class="column">
+                                        <li><a href="/admin/admins/delete?id={{data.id}}" class="red-text">{{ lang(req, 'admin.main.Delete') }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{ /each }}
+                </tbody>
+            </table>
+            <span class="count">{{ lang(req, 'admin.main.Count Of Records') }}: {{ Object.keys(datas).length }}</span>
+        </div>
+    {{ else }}
+        <span>{{ lang(req, 'admin.main.No Records') }}</span>
+    {{ /if }}
+{{ /block }}

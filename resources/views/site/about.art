@@ -6,8 +6,8 @@
 <section class="page-header about-bg">
     <div class="page-header__bg about-overlay"></div>
     <div class="page-header__box container">
-        <h1>Hakkımızda</h1>
-        <p>Description</p>
+        <h1>{{ lang(req, 'admin.main.About Us') }}</h1>
+        <p>{{ lang(req, 'admin.main.Description') }}</p>
     </div>
 </section>
 <section class="about flex column">
@@ -17,13 +17,13 @@
                 <img class="slider-bg" src="/static/storage/img/about-bg.png">
             </div>
             <div class="card__text flex column">
-                <h1>Our mission</h1>
-                <p>Message</p>
+                <h1>{{ lang(req, 'admin.main.Our Mission') }}</h1>
+                <p>{{ lang(req, 'admin.main.Our Mission Message') }}</p>
             </div>
         </div>
     </div>
     <div class="about__button flex">
-        <a href="/solutions" class="btn filled-white-btn">Our Solutions</a>
+        <a href="/solutions" class="btn filled-white-btn">{{ lang(req, 'admin.main.Our Solutions') }}</a>
     </div>
 </section>
 <section class="numbers flex">
@@ -51,9 +51,9 @@
 <section class="details">
     <div class="container flex column">
         <div class="page-subheader flex column">
-            <h1>Missions Header</h1>
+            <h1>{{ lang(req, 'admin.main.Missions Header') }}</h1>
             <div class="line"></div>
-            <p>Missions Header Content</p>
+            <p>{{ lang(req, 'admin.main.Missions Header Content') }}</p>
         </div>
     </div>
 </section>

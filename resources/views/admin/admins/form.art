@@ -1,0 +1,49 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, 'admin.main.Admin Edit') }}{{/block}}
+{{block "plugins"}}
+    <link rel="stylesheet" href="/static/storage/css/jquery-ui.min.css">
+    <script src="/static/storage/js/jquery-ui.min.js"></script>
+    <script src="/static/storage/js/admin/admins/edit.js"></script>
+{{/block}}
+{{block "content"}}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form__sections flex column">
+            <section>
+                <h3>{{ lang(req, 'admin.main.Admin Details') }}</h3>
+                <div class="inputs flex column">
+                    <div class="input flex column">
+                        <b>{{ lang(req, 'admin.main.Admin Name and Surname') }}</b>
+                        <input type="text" name="name_surname" placeholder="{{ lang(req, 'admin.main.Admin Name and Surname') }} *" value="{{data.name_surname}}" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, 'admin.main.Email') }}</b>
+                        <input type="email" name="email" placeholder="{{ lang(req, 'admin.main.Email') }} *" value="{{data.email}}" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, 'admin.main.Phone') }}</b>
+                        <input type="text" name="phone" placeholder="{{ lang(req, 'admin.main.Phone') }} *" value="{{data.phone}}" required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, 'admin.main.Password') }}</b>
+                        <input type="password" name="password" placeholder="{{ lang(req, 'admin.main.Password') }} *" value="" minlength="8"  required class="input-text">
+                    </div>
+                    <div class="input flex column">
+                        <b>{{ lang(req, 'admin.main.Status') }}</b>
+                        <div class="input">
+                            <label class="slide_checkbox">
+                                <input type="checkbox" name="status" {{ if data.status === "active" }} checked {{ /if }}>
+                                <div class="slide_checkbox__checkbox"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <button class="button green-button flex">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>{{ lang(req, 'admin.main.Save') }}</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+{{ /block }}

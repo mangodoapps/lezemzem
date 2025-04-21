@@ -1,0 +1,56 @@
+<div class="inputs flex column">
+    <div class="content_creator__item__content__buttons flex" data-input-name="{{ name }}[contact-box][items]">
+        <div class="flex button purple-button" data-creator-button-name="contact-box-item">{{ lang(req, 'admin.main.New Item') }}</div>
+    </div>
+    <div class="content_creator__items flex column">
+        {{ set key = 0 }}
+        {{ each item["contact-box"]["items"] contact_box key }}
+            <div class="content_creator__item" data-child-item-index="0">
+                <div class="content_creator__item__title flex">
+                    <span>{{ contact_box.title.tr }}</span>
+                    <div class="content_creator__item__title__actions flex">
+                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+                <div class="content_creator__item__content">
+                    <div class="inputs flex column">
+                        <div class="windows flex column">
+                            <div class="windows__windows flex">
+                                <button class="button purple-button flex" data-window-name="tr">{{ lang(req, 'admin.main.Turkish') }}</button>
+                                <button class="button flex" data-window-name="en">{{ lang(req, 'admin.main.English') }}</button>
+                            </div>
+                            <div class="windows__window windows__active" data-window-name="tr">
+                                <div class="inputs flex column">
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                        <input type="text" name="{{ name }}[contact-box][items][{{ key }}][title][tr]" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{ contact_box.title.tr }}" required class="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="windows__window" data-window-name="en">
+                                <div class="inputs flex column">
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                        <input type="text" name="{{ name }}[contact-box][items][{{ key }}][title][en]" placeholder="{{ lang(req, 'admin.main.Title') }}" value="{{ contact_box.title.en }}" class="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input flex column">
+                                <b>{{ lang(req, 'admin.main.Address') }}</b>
+                                <input type="text" name="{{ name }}[contact-box][items][{{ key }}][address]" placeholder="{{ lang(req, 'admin.main.Address *') }}" value="{{ contact_box.address }}" required class="input-text">
+                            </div>
+                            <div class="input flex column">
+                                <b>{{ lang(req, 'admin.main.Phone') }}</b>
+                                <input type="text" name="{{ name }}[contact-box][items][{{ key }}][phone]" placeholder="{{ lang(req, 'admin.main.Phone *') }}" value="{{ contact_box.phone }}" required class="input-text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% key++ %>
+        {{ /each }}
+    </div>
+</div>

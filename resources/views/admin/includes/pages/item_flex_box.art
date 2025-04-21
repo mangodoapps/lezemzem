@@ -1,0 +1,58 @@
+<div class="inputs flex column">
+    <div class="content_creator__item__content__buttons flex" data-input-name="{{ name }}[flex-box][items]">
+        <div class="flex button purple-button" data-creator-button-name="flex-box-item">{{ lang(req, 'admin.main.New Item') }}</div>
+    </div>
+    <div class="content_creator__items flex column">
+        {{ set key = 0 }}
+        {{ each item["flex-box"]["items"] flex_box key }}
+            <div class="content_creator__item" data-child-item-index="0">
+                <div class="content_creator__item__title flex">
+                    <span>{{ flex_box.text.tr }}</span>
+                    <div class="content_creator__item__title__actions flex">
+                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+                <div class="content_creator__item__content">
+                    <div class="inputs flex column">
+                        <div class="windows flex column">
+                            <div class="windows__windows flex">
+                                <button class="button purple-button flex" data-window-name="tr">{{ lang(req, 'admin.main.Turkish') }}</button>
+                                <button class="button flex" data-window-name="en">{{ lang(req, 'admin.main.English') }}</button>
+                            </div>
+                            <div class="windows__window windows__active" data-window-name="tr">
+                                <div class="inputs flex column">
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                        <input type="text" name="{{ name }}[flex-box][items][{{ key }}][text][tr]" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{ flex_box.text.tr }}" required class="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="windows__window" data-window-name="en">
+                                <div class="inputs flex column">
+                                    <div class="input flex column">
+                                        <b>{{ lang(req, 'admin.main.Title') }}</b>
+                                        <input type="text" name="{{ name }}[flex-box][items][{{ key }}][text][en]" placeholder="{{ lang(req, 'admin.main.Title') }}" value="{{ flex_box.text.en }}" class="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input flex column">
+                            <b>{{ lang(req, 'admin.main.Icon') }}</b>
+                            <div class="input">
+                                <label class="file-input file-manager-button button inline-flex purple-button">
+                                    <i class="fa-solid fa-file-import"></i>
+                                    <span data-default-text="{{ lang(req, 'admin.main.Select Icon') }}">{{ lang(req, 'admin.main.Select Icon') }}</span>
+                                    <input type="hidden" name="{{ name }}[flex-box][items][{{ key }}][icon]" value="{{ flex_box.icon }}">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% key++ %>
+        {{ /each }}
+    </div>
+</div>

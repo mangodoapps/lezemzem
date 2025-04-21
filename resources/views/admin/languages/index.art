@@ -1,0 +1,52 @@
+{{ extend "../theme.art" }}
+{{block "title"}}{{ lang(req, req.language + '.Languages') }}{{/block}}
+{{block "content"}}
+    <div class="main__buttons flex">
+        <a href="/admin/languages/new" class="button green-button flex">
+            <i class="fa-solid fa-plus"></i>
+            <span>{{ lang(req, req.language + '.New Language') }}</span>
+        </a>
+    </div>
+    {{ if datas && Object.keys(datas).length !== 0 }}
+        <div class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ lang(req, req.language + '.Name') }}</th>
+                        <th>{{ lang(req, req.language + '.Code') }}</th>
+                        <th>{{ lang(req, req.language + '.Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ each datas data }}
+                    <tr>
+                        <td width="100">
+                            <span
+                                class="background-text {{ if data.status === 'active' }}green{{ else if data.status === 'deactive' }}red{{ /if }}-background-text">
+                                {{ if data.status === 'active' }}{{ lang(req, req.language + '.Active') }}{{ else if data.status === 'deactive' }}{{ lang(req, req.language + '.Deactive') }}{{ /if }}
+                            </span>
+                        </td>
+                        <td>{{ if data.name }}{{ data.name }}{{ else }}<i>{{ lang(req, req.language + '.New Data') }}</i>{{ /if }}</td>
+                        <td>{{ if data.code }}{{ data.code }}{{ else }}<i>{{ lang(req, req.language + '.New Data') }}</i>{{ /if }}</td>
+                        <td width="100">
+                            <div class="actions flex">
+                                <a href="/admin/languages/edit?id={{data.id}}" title="{{ lang(req, req.language + '.Edit') }}"><i class="fa-solid fa-pen"></i></a>
+                                <div class="actions__buttons">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <ul class="column">
+                                        <li><a href="/admin/languages/delete?id={{data.id}}" class="red-text">{{ lang(req, req.language + '.Delete') }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{ /each }}
+                </tbody>
+            </table>
+            <span class="count">{{ lang(req, req.language + '.Count Of Records') }}: {{ Object.keys(datas).length }}</span>
+        </div>
+    {{ else }}
+        <span>{{ lang(req, req.language + '.No Records') }}</span>
+    {{ /if }}
+{{ /block }}
