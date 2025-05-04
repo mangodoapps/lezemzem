@@ -25,7 +25,7 @@
                     </div>
                     <div class="input flex column">
                         <b>{{ lang(req, 'admin.main.Password') }}</b>
-                        <input type="password" name="password" placeholder="{{ lang(req, 'admin.main.Password') }} *" value="" minlength="8"  required class="input-text">
+                        <input type="password" name="password" placeholder="{{ lang(req, 'admin.main.Password') }} *" value="" minlength="8"  class="input-text">
                     </div>
                     <div class="input flex column">
                         <b>{{ lang(req, 'admin.main.Status') }}</b>
