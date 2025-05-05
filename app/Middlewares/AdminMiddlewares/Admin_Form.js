@@ -17,7 +17,7 @@ class AdminAdminFormMiddleware {
         const validate = Validator.make(req.body, {
             "name_surname": "required|string",
             "email": "required|email",
-            "password": "string",
+            "password": "nullable|string",
             "phone": "required|string",
         });
         if (validate) {

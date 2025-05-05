@@ -1,12 +1,12 @@
 var fileManagerSelectedInputElement;
 
-$(document).ready(async function() {
+$(document).ready(async function () {
 
     let clickCount = 0;
     let clickTimer;
     hideButtonsAndFileDetailsWindow();
     // Open File Manager
-    $(document, window).on("click", ".file-input.file-manager-button", async function() {
+    $(document, window).on("click", ".file-input.file-manager-button", async function () {
         loadingPopup(1);
         $(".file-manager").fadeIn(200);
         await getFolders("/");
@@ -17,7 +17,7 @@ $(document).ready(async function() {
     });
 
     // Click New Folder
-    $(".file-manager > .flex > section:first-of-type button").click(async function() {
+    $(".file-manager > .flex > section:first-of-type button").click(async function () {
         loadingPopup(1);
         hideButtonsAndFileDetailsWindow();
         const selectedFolder = $(".file-manager > .flex > section:first-of-type a.selected");
@@ -27,7 +27,7 @@ $(document).ready(async function() {
     });
 
     // Click Folder in Folder List
-    $(".file-manager > .flex > section:first-of-type").on("click", "a", async function() {
+    $(".file-manager > .flex > section:first-of-type").on("click", "a", async function () {
         loadingPopup(1);
         const path = $(this).attr("data-path");
         hideButtonsAndFileDetailsWindow();
@@ -38,9 +38,9 @@ $(document).ready(async function() {
         }
         else if ((!$(this).hasClass("active") && $(this).hasClass("selected")) || (!$(this).hasClass("active") && !$(this).hasClass("selected"))) {
             $(this).addClass("active");
-            $(this).closest("li").find("> ul").slideToggle(200, function() {
+            $(this).closest("li").find("> ul").slideToggle(200, function () {
                 if ($(this).is(':visible'))
-                    $(this).css('display','flex');
+                    $(this).css('display', 'flex');
             });
         }
         $(".file-manager > .flex > section:first-of-type a.selected").removeClass("selected");
@@ -49,25 +49,29 @@ $(document).ready(async function() {
         loadingPopup(2);
     });
 
-    // File Click
-    $(".file-manager .file-manager__files").on("click", "a", async function() {
+    // File Click - Event Delegation ile
+    $(document).on("click", ".file-manager .file-manager__files a", async function () {
         const fileElement = $(this);
         clickCount++;
+
         // Single Click
         if (clickCount === 1) {
-            clickTimer = setTimeout(async function() {
+            clickTimer = setTimeout(async function () {
                 clickCount = 0;
                 loadingPopup(1);
                 const fileID = fileElement.attr("data-id");
                 await getFile(fileID);
                 loadingPopup(2);
             }, 200);
-        // Double Click
+
+            // Double Click
         } else if (clickCount === 2) {
             clearTimeout(clickTimer);
             clickCount = 0;
+            console.log(fileElement.attr("data-id"), fileElement.find("span").text());
+
             if (fileElement.attr("data-type") == "file") {
-                if (fileManagerSelectedInputElement.find("span").text() != "File Manager"){
+                if (fileManagerSelectedInputElement.find("span").text() != "File Manager") {
                     fileManagerSelectedInputElement.find("span").text(fileElement.find("span").text());
                     fileManagerSelectedInputElement.find("input").val(fileElement.attr("data-id"));
                 }
@@ -76,8 +80,9 @@ $(document).ready(async function() {
         }
     });
 
+
     // Delete File
-    $(".file-manager .file-manager__buttons button[data-button-name='delete']").on("click", async function() {
+    $(".file-manager .file-manager__buttons button[data-button-name='delete']").on("click", async function () {
         loadingPopup(1);
         hideButtonsAndFileDetailsWindow();
         const fileID = $(".file-manager .file-manager__files a.selected").attr("data-id");
@@ -86,13 +91,13 @@ $(document).ready(async function() {
     });
 
     // Upload File
-    $(".file-manager .file-manager__buttons button[data-button-name='upload-file']").on("click", async function() {
+    $(".file-manager .file-manager__buttons button[data-button-name='upload-file']").on("click", async function () {
         hideButtonsAndFileDetailsWindow();
         uploadFile();
     });
 
     // Update
-    $(".file-manager > .flex > section:last-of-type form").on("submit", async function(e) {
+    $(".file-manager > .flex > section:last-of-type form").on("submit", async function (e) {
         const id = $(".file-manager .file-manager__files a.selected").attr("data-id");
         const fd = new FormData($(this)[0]);
         fd.append("id", id);
@@ -103,39 +108,39 @@ $(document).ready(async function() {
     });
 
     // Close File Manager
-    $(".file-manager > .flex").on("click", "> svg.fa-xmark", function() {
+    $(".file-manager > .flex").on("click", "> svg.fa-xmark", function () {
         $(".file-manager").fadeOut(200);
         fileManagerSelectedInputElement.find("span").text(fileManagerSelectedInputElement.find("span").attr("data-default-text"));
         fileManagerSelectedInputElement.find("input").val("");
     });
 
     // Search
-    $(".file-manager__buttons > input").on("input", async function() {
+    $(".file-manager__buttons > input").on("input", async function () {
         hideButtonsAndFileDetailsWindow();
         await getFiles("/");
     });
 
-    // $(".green-button").on("click", function() {
-    //     const firstFileElement = $(".file-manager .file-manager__files a").first();
-    
-    //     if (firstFileElement.length > 0) {
-    //         clickCount = 2;  // Çift tıklama olarak ayarla
-    //         firstFileElement.trigger("click");  // Click eventini tetikle
-    //     } else {
-    //         console.log("Dosya bulunamadı.");
-    //     }
-    // });
+    // Save Button
+    $(".green-button").on("click", function () {
+        const selectedFile = $(".file-manager .file-manager__files a.flex.column.selected").first();
+        if (selectedFile.length > 0) {
+            selectedFile.trigger("click"); // İlk tıklama
+            setTimeout(() => {
+                selectedFile.trigger("click"); // İkinci tıklama
+            }, 100); // Zamanlama, çift tıklama algılaması için yeterince kısa olmalı
+        }
+    });
 
-    function showFolder (path) {
-        const folder = $(".file-manager > .flex > section:first-of-type a[data-path='"+ path +"']");
+    function showFolder(path) {
+        const folder = $(".file-manager > .flex > section:first-of-type a[data-path='" + path + "']");
         folder.addClass("active");
-        folder.closest("li").find("> ul").slideDown(200, function() {
+        folder.closest("li").find("> ul").slideDown(200, function () {
             if ($(this).is(':visible'))
-                $(this).css('display','flex');
+                $(this).css('display', 'flex');
         });
     }
 
-    function hideButtonsAndFileDetailsWindow () {
+    function hideButtonsAndFileDetailsWindow() {
         $(".file-manager .file-manager__buttons button[data-button-name='delete']").hide();
         $(".file-manager > .flex > section:first-of-type + section").removeClass("minimized");
         $(".file-manager > .flex > section:last-of-type").removeClass("active");
@@ -150,7 +155,7 @@ $(document).ready(async function() {
                 body: fd,
             });
             const data = await response.json();
-    
+
             if (data.status === "failed") {
                 loadingPopup(2);
                 setTimeout(() => {
@@ -162,7 +167,7 @@ $(document).ready(async function() {
             }
         } catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
@@ -173,7 +178,7 @@ $(document).ready(async function() {
             const queryParams = new URLSearchParams({ path }).toString();
             const response = await fetch(`/admin/file-manager/get-folders?${queryParams}`);
             const data = await response.json();
-    
+
             if (data.status === "failed") {
                 loadingPopup(2);
                 setTimeout(() => {
@@ -209,13 +214,13 @@ $(document).ready(async function() {
             }
         } catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
     }
 
-    async function getFiles (path) {
+    async function getFiles(path) {
         try {
             const requestData = {
                 search: $(".file-manager__buttons > input").val()
@@ -255,13 +260,13 @@ $(document).ready(async function() {
             }
         } catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
     }
 
-    async function getFile (id) {
+    async function getFile(id) {
         try {
             const response = await fetch(`/admin/file-manager/get-file?id=${id}`);
             const data = await response.json();
@@ -271,7 +276,7 @@ $(document).ready(async function() {
                     warningPopup(...Object.values(data));
                 }, 200);
             } else {
-                const fileElement = $(".file-manager .file-manager__files a[data-id='"+ id +"']");
+                const fileElement = $(".file-manager .file-manager__files a[data-id='" + id + "']");
 
                 $(".file-manager .file-manager__buttons button[data-button-name='delete']").removeAttr("style");
                 $(".file-manager .file-manager__files a.selected").removeClass("selected");
@@ -308,17 +313,17 @@ $(document).ready(async function() {
         }
         catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
     }
 
-    function uploadFile () {
+    function uploadFile() {
         const input = $("<input>").attr("type", "file").attr("multiple", "multiple");
         input.click();
 
-        input.on("change", async function() {
+        input.on("change", async function () {
             if ($(this)[0].files.length !== 0) {
                 loadingPopup(1);
                 const fd = new FormData();
@@ -344,7 +349,7 @@ $(document).ready(async function() {
                         }
                         for (const file of Object.values(data.files)) {
                             $(".file-manager .file-manager__files").prepend(`
-                                <a class="flex column" data-id='${file.id}'>
+                                <a class="flex column" data-id='${file.id}' data-type='${file.type}'>
                                     <div class="file-manager__files__icon">
                                         ${file.type === "folder" ? '<i class="fa-solid fa-folder"></i>' : '<i class="fa-solid fa-file"></i>'}
                                     </div>
@@ -357,7 +362,7 @@ $(document).ready(async function() {
                 }
                 catch (error) {
                     loadingPopup(2);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         warningPopup("serverError", null, true, 5000);
                     }, 200);
                 }
@@ -369,7 +374,7 @@ $(document).ready(async function() {
         });
     }
 
-    async function deleteFile (id) {
+    async function deleteFile(id) {
         const fd = new FormData();
         fd.append("id", id);
         try {
@@ -398,13 +403,13 @@ $(document).ready(async function() {
         }
         catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
     }
 
-    async function update (fd) {
+    async function update(fd) {
         try {
             const response = await fetch(`/admin/file-manager/update`, {
                 method: "POST",
@@ -428,7 +433,7 @@ $(document).ready(async function() {
         }
         catch (error) {
             loadingPopup(2);
-            setTimeout(function() {
+            setTimeout(function () {
                 warningPopup("serverError", null, true, 5000);
             }, 200);
         }
