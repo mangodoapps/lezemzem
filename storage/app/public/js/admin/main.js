@@ -36,7 +36,11 @@ $(document).ready(function() {
     // Close Warning Popup
     $(".warningPopup").on("click", "svg.fa-xmark", function() {
         if ($(this).attr("data-reload-page") === "true") {
-            window.location.href = $(this).attr("data-reload-page-url");
+            var reloadUrl = $(this).attr("data-reload-page-url");
+            if (reloadUrl.includes('#')) {
+                reloadUrl = reloadUrl.split('#')[0]; // Remove the hash part of the URL
+            }
+            window.location.href = reloadUrl;
         }
         else {
             $(".warningPopup").fadeOut(200);

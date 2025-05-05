@@ -43,7 +43,6 @@ class ThemeController extends BaseController {
                 }
             }
         }
-        console.log(theme.home.sliders)
         return view(res, "admin.theme.index", {
             ...await BaseController.boot(req),
             theme,
