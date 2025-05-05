@@ -102,7 +102,7 @@
                 <h2>{{themeHome?.section_3.subtitle[req.language]}}</h2>
                 <p>{{@ themeHome?.section_3?.content[req.language]}}</p>
             </div>
-            <a href="/donation" class="btn filled-white-btn">{{ lang(req, 'admin.main.Contact') }}</a>
+            <a href="/contact" class="btn filled-white-btn">{{ lang(req, 'admin.main.Contact') }}</a>
         </div>
         {{ /if }}
     </div>
