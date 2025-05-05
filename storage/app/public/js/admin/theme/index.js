@@ -26,6 +26,17 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).ready(function() {
+        $('.text-uppercase').on('input', function() {
+            const value = $(this).val();
+            const upper = value
+                .replace(/i/g, 'İ')
+                .replace(/ı/g, 'I')
+                .toUpperCase();
+            $(this).val(upper);
+        });
+    });
 });
 
 function getItemName(itemName) {
