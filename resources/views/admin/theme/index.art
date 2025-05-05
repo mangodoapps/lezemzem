@@ -50,11 +50,11 @@
                                                                     <div class="inputs flex column">
                                                                         <div class="input flex column">
                                                                             <b>{{ lang(req, 'admin.main.Header') }}</b>
-                                                                            <input type="text" name="home[sliders][{{index}}][header][{{language.code}}]" style="text-transform:uppercase" placeholder="{{ lang(req, 'admin.main.Header *') }}" value="{{data?.['header']?.[language.code]}}" required class="input-text">
+                                                                            <input type="text" name="home[sliders][{{index}}][header][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Header *') }}" value="{{data?.['header']?.[language.code]}}" required class="input-text">
                                                                         </div>
                                                                         <div class="input flex column">
                                                                             <b>{{ lang(req, 'admin.main.Title') }}</b>
-                                                                            <input type="text" name="home[sliders][{{index}}][title][{{language.code}}]" style="text-transform:uppercase" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{data?.['title']?.[language.code]}}" required class="input-text">
+                                                                            <input type="text" name="home[sliders][{{index}}][title][{{language.code}}]" placeholder="{{ lang(req, 'admin.main.Title *') }}" value="{{data?.['title']?.[language.code]}}" required class="input-text">
                                                                         </div>
                                                                         <div class="input flex column">
                                                                             <b>{{ lang(req, 'admin.main.Content') }}</b>
