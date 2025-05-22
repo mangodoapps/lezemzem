@@ -5,7 +5,6 @@ import Validator from "../../../lib/Validator.js";
 class CreateContactFormMiddleware {
 
     static async handler (req, res) {
-        console.log(1)
         const validate = Validator.make(req.body, {
             "recaptcha_token": "required|string",
         });
@@ -15,8 +14,6 @@ class CreateContactFormMiddleware {
                 "message": "Please fill out the form as required.",
             });
         }
-        console.log(req.body)
-
         const secret_key = process.env.GOOGLE_RECAPTCHA_SECRETKEY;
         const token = req.body.recaptcha_token;
         const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;

@@ -14,8 +14,7 @@ class ContactController{
         const settings = await Setting.first();
         try {
             const from = `${settings.business_name}`;
-            await Mail.from(from).to("turkmenrifat97@gmail.com").subject("Bir iletişim formu alındı").view(res, "mail.contact", {
-            // await Mail.from(from).to(settings.email).subject("Bir iletişim formu alındı").view(res, "mail.contact", {
+            await Mail.from(from).to(settings.email).subject("Bir iletişim formu alındı").view(res, "mail.contact", {
                 settings,
                 req,
             }).send();
