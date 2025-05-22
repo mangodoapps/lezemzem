@@ -2,6 +2,7 @@
 
 {{ block "plugins" }}
     <script src="/static/storage/js/site/contact/index.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{env.GOOGLE_RECAPTCHA_SITEKEY}}"></script>
 {{/block}}
 {{ block "content" }}
 <div class="animated-bg"></div>
@@ -49,11 +50,21 @@
                         <label for="message">{{ lang(req, 'admin.main.Message') }}</label>
                         <textarea name="message" id="message" rows="5" required></textarea>
                     </div>
+                    <input type="hidden" name="recaptcha_token" class="recaptcha_token">
                     <button class="btn filled-btn" type="submit">{{ lang(req, 'admin.main.Submit') }}</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+	grecaptcha.ready(function() {
+		grecaptcha.execute('{{env.GOOGLE_RECAPTCHA_SITEKEY}}', {action: 'demo'})
+			.then(function(token) {
+				$('input[name="recaptcha_token"]').val(token);
+			});
+	});
+</script>
 
 {{ /block }}

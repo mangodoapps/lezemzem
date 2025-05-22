@@ -33,7 +33,7 @@ Route.get("/", SiteHomeController.getHome);
 
 Route.get("/about", AboutController.getAbout);
 Route.get("/contact", ContactController.getContact);
-Route.post("/contact", ContactController.postContact);
+Route.post("/contact", ContactController.postContact).middleware("site.contact.form");
 
 Route.prefix("/industries").group(function (){
     // Route.get("/", IndustriesController.getIndustries);

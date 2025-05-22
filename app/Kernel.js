@@ -23,6 +23,10 @@ import AdminActivitySettingsFormMiddleware from "./Middlewares/AdminMiddlewares/
 import AdminSolutionsSettingsFormMiddleware from "./Middlewares/AdminMiddlewares/Solutions_Settings_Form.js";
 import AdminCategorySettingsFormMiddleware from "./Middlewares/AdminMiddlewares/Category_Settings_Form.js";
 
+// Site Middlewares
+import CreateContactFormMiddleware from "./Middlewares/SiteMiddlewares/Create_Contact_Form.js";
+
+
 export default {
 
     // Route Middlewares
@@ -52,6 +56,9 @@ export default {
         "admin.activity-settings.form": AdminActivitySettingsFormMiddleware,
         "admin.solutions-settings.form": AdminSolutionsSettingsFormMiddleware,
         "admin.category-settings.form": AdminCategorySettingsFormMiddleware,
+
+        // Site Middlewares
+        "site.contact.form": CreateContactFormMiddleware,
     }
 
 }
