@@ -59,12 +59,13 @@
 </section>
 
 <script>
+    <!-- domain gelince eklenecek
 	grecaptcha.ready(function() {
 		grecaptcha.execute('{{env.GOOGLE_RECAPTCHA_SITEKEY}}', {action: 'demo'})
 			.then(function(token) {
 				$('input[name="recaptcha_token"]').val(token);
 			});
-	});
+	}); -->
 </script>
 
 {{ /block }}
