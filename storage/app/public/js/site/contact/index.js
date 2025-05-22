@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $("form").on("submit", function (e) {
-        alert(2)
         e.preventDefault();
         loadingPopup(1);
         const fd = new FormData($(this)[0]);
