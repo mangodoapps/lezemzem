@@ -1,6 +1,8 @@
 {{ extend "./theme.art" }}
 
-
+{{ block "plugins" }}
+    <script src="/static/storage/js/site/contact/index.js"></script>
+{{/block}}
 {{ block "content" }}
 <div class="animated-bg"></div>
 <section class="page-header contact-bg">

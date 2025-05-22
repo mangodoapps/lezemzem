@@ -12,15 +12,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/storage/js/fontawesome.min.js"></script>
     <script src="/static/storage/js/site/main.js"></script>
     <script src="/static/storage/js/site/swiper.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    {{ block "plugins" }}{{ /block }}
+
 </head>
 <body>
-    
+    <div class="loadingPopup">
+        <div class="flex">
+            <div class="loadingPopup__content">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <rect x="17.5" y="30" width="15" height="40" fill="#435ebe">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="18;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="64;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+                    </rect>
+                    <rect x="42.5" y="30" width="15" height="40" fill="#5f7ada">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+                    </rect>
+                    <rect x="67.5" y="30" width="15" height="40" fill="#8da5fc">
+                        <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+                        <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+                    </rect>
+                </svg>
+                <div class="loadingPopup__content__title">{{ lang(req, "admin.main.Please Wait") }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="warningPopup">
+        <div class="flex">
+            <div class="warningPopup__content">
+                <i class="fa-solid fa-xmark button red-button" data-reload-page="false"></i>
+                <i class="fa-solid fa-check"></i>
+                <div class="warningPopup__content__title" data-message-success="{{ lang(req, 'admin.main.Successful') }}" data-message-unsuccess="{{ lang(req, 'admin.main.Unsuccessful') }}"></div>
+                <div class="warningPopup__content__message" data-message-server-error="{{ lang(req, 'admin.main.Successful') }}"></div>
+            </div>
+        </div>
+    </div>
     <header class="header flex">
         <div class="header__logo">
-            <a href="/"><img src="/static/storage/img/logo.png" alt="Logo"></a>
+            <a href="/"><img src="/static/storage/upload_files/{{settings?.icon_name}}-logo.png" alt="Logo"></a>
         </div>
         <div class="header__menu flex">
             <div class="header__pages">
