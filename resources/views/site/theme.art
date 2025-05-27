@@ -118,7 +118,7 @@
             <div class="social flex column">
                 <span>{{ lang(req, 'admin.main.Follow us') }}:</span>
                 <div class="social__links flex">
-                    <a href="{{ settings?.social_media?.facebook }}" target="_blank" class="social-icon facebook">
+                    <!-- <a href="{{ settings?.social_media?.facebook }}" target="_blank" class="social-icon facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="{{ settings?.social_media?.twitter }}" target="_blank" class="social-icon x-twitter">
@@ -129,7 +129,7 @@
                     </a>
                     <a href="{{ settings?.social_media?.youtube }}" target="_blank" class="social-icon youtube">
                         <i class="fa-brands fa-youtube"></i>
-                    </a>
+                    </a> -->
                     <a href="{{ settings?.social_media?.instagram }}" target="_blank" class="social-icon instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>

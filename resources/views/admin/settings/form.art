@@ -139,7 +139,7 @@
 						<h3>{{ lang(req, 'admin.main.Social Media Accounts') }}</h3>
 						{{ set socialMedia = data?.social_media ? JSON.parse(data.social_media) : null }}
 						<div class="inputs flex column">
-							<div class="input flex column">
+							<!-- <div class="input flex column">
 								<b>Facebook</b>
 								<input type="text" name="social_media[facebook]" placeholder="Facebook Link" value="{{socialMedia?.facebook}}" class="input-text">
 							</div>
@@ -154,7 +154,7 @@
 							<div class="input flex column">
 								<b>Youtube</b>
 								<input type="text" name="social_media[youtube]" placeholder="Youtube Link" value="{{socialMedia?.youtube}}" class="input-text">
-							</div>
+							</div> -->
 							<div class="input flex column">
 								<b>Instagram</b>
 								<input type="text" name="social_media[instagram]" placeholder="Instagram Link" value="{{socialMedia?.instagram}}" class="input-text">

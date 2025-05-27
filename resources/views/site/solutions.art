@@ -24,9 +24,9 @@
           {{ /each }}
         </div>
         <div class="pagination">
-            <button id="prev" class="pagination-btn" disabled>{{ lang(req, 'admin.main.Previous') }}</button>
+            <button id="prev" class="pagination-btn" disabled><i class="fa-solid fa-arrow-left"></i></button>
             <span id="page-info"></span>
-            <button id="next" class="pagination-btn">{{ lang(req, 'admin.main.Next') }}</button>
+            <button id="next" class="pagination-btn"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
 </section>

@@ -7,7 +7,7 @@
     <div class="page-header__bg about-overlay"></div>
     <div class="page-header__box container">
         <h1>{{ lang(req, 'admin.main.About Us') }}</h1>
-        <p>{{ lang(req, 'admin.main.Description') }}</p>
+        <p>{{ lang(req, 'admin.main.About Us Description') }}</p>
     </div>
 </section>
 <section class="about flex column">

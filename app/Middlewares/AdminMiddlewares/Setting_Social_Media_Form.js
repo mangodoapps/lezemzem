@@ -5,7 +5,7 @@ class SettingSocialMediaFormMiddleware {
 
     static async handler (req, res) {
         const validate = Validator.make(req.body, {
-            "social_media": "required|array|min:5",
+            "social_media": "required|array",
             "social_media.*": "nullable|string",
         });
         if (validate) {
