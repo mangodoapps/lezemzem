@@ -5,7 +5,7 @@
 }
 html, body {
 	width: 100%;
-    font-family: sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 body {
@@ -45,8 +45,8 @@ main{
 .btn{
     padding: 10px 20px;
     background-color: white;
-    border:1px solid #e94e12;
-    color: #e94e12;
+    border:1px solid #3c5d2f;
+    color: #3c5d2f;
     font-size: 14px;
     font-weight: bold;
     border-radius: 5px;
@@ -54,28 +54,28 @@ main{
     transition: all 0.3s ease;
 }
 .btn:hover{
-    border-color: #b0390f;
-    color: #b0390f;
+    border-color: #78ba5e;
+    color: #78ba5e;
 }
 a.btn{
     text-decoration: none;
     text-align: center;
 }
 .filled-btn{
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     color: white;
 }
 .filled-btn:hover{
-    border-color: #b0390f;
-    background-color: #b0390f;
+    border-color: #78ba5e;
+    background-color: #78ba5e;
     color: white;
 }
 .filled-white-btn{
     background-color: white;
-    color: #e94e12;
+    color: #3c5d2f;
 }
 .filled-white-btn:hover{
-    background-color: #b0390f;
+    background-color: #78ba5e;
     color: white;
 }
 .white-btn{
@@ -97,7 +97,7 @@ a.btn{
     color: #777;
 }
 .page-subheader .line{
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     height: 3px;
     width: 100%;
 }
@@ -158,7 +158,7 @@ a.btn{
 }
 .box__text a{
     font-size: 14px;
-    color: #e94e12;
+    color: #3c5d2f;
 }
 .box__text a i{
     margin-left: 5px;
@@ -207,7 +207,7 @@ a.btn{
     top: 100%;
     left: 0;
     background-color: white;
-    border: 1px solid #e94e12;
+    border: 1px solid #3c5d2f;
     border-radius: 5px;
     margin-top: 4px;
     z-index: 1000;
@@ -227,7 +227,7 @@ a.btn{
     border-bottom: transparent;
 }
 .language-option:hover {
-    color: #e94e12;
+    color: #3c5d2f;
 }
 
 /* Header */
@@ -272,7 +272,7 @@ a.btn{
     transform: scale(1.1);
 }
 .header .navigation li:hover a{
-    color: #e94e12;
+    color: #3c5d2f;
 }
 .header__buttons{
     padding-top: 0.5rem;
@@ -426,7 +426,7 @@ a.btn{
     font-size: 25px;
 }
 .overview__box .line{
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     height: 3px;
     width: 100%;
 }
@@ -520,13 +520,13 @@ a.btn{
 .page-header__box{
     padding: 2rem 3rem;
     background-color: white;
-    border: 1px solid #e94e12;
+    border: 1px solid #3c5d2f;
     border-radius: 5px;
     margin-top: -90px;
 }
 .page-header__box h1{
     font-size: 32px;
-    color: #e94e12;
+    color: #3c5d2f;
     margin-bottom: 10px;
 }
 .page-header__box p{
@@ -580,7 +580,7 @@ a.btn{
     text-align: justify;
     overflow: hidden;
     z-index: 2;
-    border: 1px solid #e94e12;
+    border: 1px solid #3c5d2f;
 }
 .details{
     padding: 4rem 0;
@@ -602,7 +602,7 @@ a.btn{
     justify-content: center;
     padding: 2rem 0;
     gap: 10rem;
-    border-top: 5px solid #e94e12;
+    border-top: 5px solid #3c5d2f;
 }
 .numbers h1{
     font-size: 60px;
@@ -619,7 +619,7 @@ a.btn{
 /* Projects */
 .projects{
     position: relative;
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     padding: 2rem 0;
 }
 .projects-container{
@@ -655,7 +655,7 @@ a.btn{
     margin-top: 20px;
 }
 .pagination-btn {
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -666,7 +666,7 @@ a.btn{
     transition: all 0.3s ease;
 }
 .pagination-btn:hover{
-    background-color: #b0390f;
+    background-color: #78ba5e;
     color: white;
 }
 .pagination-btn[disabled] {
@@ -725,11 +725,11 @@ a.btn{
     display: inline-block;
     width: 4px;
     height: 12rem;
-    background-color: #e94e12;
+    background-color: #3c5d2f;
     margin-right: 10px;
 }
 .contact__info__item:hover a, .contact__info__item:hover a i{
-    color: #e94e12;
+    color: #3c5d2f;
 }
 .contact__info a{
     text-decoration: none;
@@ -765,7 +765,7 @@ a.btn{
     transition: all 0.3s ease;
 }
 .contact__form__item input:focus, .contact__form__item textarea:focus{
-    border-color: #e94e12;
+    border-color: #3c5d2f;
     outline:none
 }
 .animated-bg{
@@ -796,7 +796,7 @@ a.btn{
 
 /* Footer */
 .footer{
-    border-top: 5px solid #e94e12;
+    border-top: 5px solid #3c5d2f;
     background-color: black;
     color: white;
     justify-content: center;
@@ -990,7 +990,7 @@ a.btn{
         flex-direction: column;
     }
     .features{
-        background-color: #e94e12;
+        background-color: #3c5d2f;
         color:white;
         padding-top: 50px;
     }
@@ -1002,7 +1002,7 @@ a.btn{
     }
     .features a.btn{
         background-color: white;
-        color: #e94e12;
+        color: #3c5d2f;
     }
     .donation__content{
         flex-direction: column;
